@@ -1,7 +1,7 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
-import { TelegramChatScreen } from "./Screens";
+import telegramPreview from "@/assets/telegram-preview.png";
 
 export const Hero = () => {
   const { t } = useI18n();
@@ -73,7 +73,12 @@ export const Hero = () => {
           <div className="absolute -inset-x-10 -top-10 bottom-0 -z-10 bg-gradient-to-t from-primary/10 via-primary/5 to-transparent blur-3xl" />
           <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
             <LaptopMockup className="px-2">
-              <TelegramChatScreen variant="vip" />
+              <img
+                src={telegramPreview}
+                alt="HBS VIP Club Telegram preview"
+                className="w-full h-full object-cover object-top"
+                loading="eager"
+              />
             </LaptopMockup>
             {/* fade overlay so the laptop disappears into the next section */}
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />

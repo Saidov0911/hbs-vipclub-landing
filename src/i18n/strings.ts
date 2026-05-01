@@ -71,7 +71,7 @@ const uz: Dict = {
   "results.label.1": "Signal natijalari",
   "results.label.2": "Guruh ichidagi tahlillar",
   "results.label.3": "Feedbacklar",
-  "results.label.4": "Real savdo misollari",
+  "results.label.4": "Joiz kripto tekshiruv bot",
   "results.tg.title": "HBS VIP Club",
   "results.tg.subtitle": "Yopiq kanal · 1 248 a’zo",
 

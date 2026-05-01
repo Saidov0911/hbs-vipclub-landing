@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { CheckCircle2, MessageSquare, TrendingUp, Users } from "lucide-react";
 import phoneTelegram from "@/assets/phone-telegram.png";
 import signalResults from "@/assets/signal-results.png";
+import joizBot from "@/assets/joiz-bot.png";
 
 export const Results = () => {
   const { t } = useI18n();
@@ -42,13 +43,13 @@ export const Results = () => {
         {/* Row 2: chart laptop + phone with signals */}
         <div className="grid lg:grid-cols-5 gap-6 items-center">
           <Reveal className="lg:col-span-3">
-            <Label icon={TrendingUp}>{t("results.label.1")}</Label>
+            <Label icon={TrendingUp}>{t("results.label.4")}</Label>
             <div className="mt-3">
               <LaptopMockup>
                 <img
-                  src={signalResults}
-                  alt="BTC/USDT signal natijalari chart"
-                  className="w-full h-full object-cover object-center"
+                  src={joizBot}
+                  alt="Joiz kripto tekshiruv bot"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
                 />
@@ -57,7 +58,7 @@ export const Results = () => {
           </Reveal>
           <Reveal className="lg:col-span-2 flex justify-center" delay={150}>
             <div className="relative">
-              <Label icon={CheckCircle2} className="mb-3">{t("results.label.4")}</Label>
+              <Label icon={CheckCircle2} className="mb-3">{t("results.label.1")}</Label>
               <PhoneMockup>
                 <img
                   src={phoneTelegram}

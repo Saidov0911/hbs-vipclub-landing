@@ -6,6 +6,7 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, MessageSquare, TrendingUp, Users } from "lucide-react";
 import phoneTelegram from "@/assets/phone-telegram.png";
+import signalResults from "@/assets/signal-results.png";
 
 export const Results = () => {
   const { t } = useI18n();
@@ -44,7 +45,13 @@ export const Results = () => {
             <Label icon={TrendingUp}>{t("results.label.1")}</Label>
             <div className="mt-3">
               <LaptopMockup>
-                <ChartScreen />
+                <img
+                  src={signalResults}
+                  alt="BTC/USDT signal natijalari chart"
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
               </LaptopMockup>
             </div>
           </Reveal>

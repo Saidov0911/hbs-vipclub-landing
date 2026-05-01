@@ -69,7 +69,7 @@ const uz: Dict = {
   "results.title": "Natijalar va real ko‘rinish",
   "results.subtitle": "Klubning ichidan jonli kadrlar — signal natijalari, tahlillar va a’zolar fikri.",
   "results.label.1": "Signal natijalari",
-  "results.label.2": "Guruh ichidagi tahlillar",
+  "results.label.2": "Club ichidagi darslar",
   "results.label.3": "Feedbacklar",
   "results.label.4": "Joiz kripto tekshiruv bot",
   "results.tg.title": "HBS VIP Club",

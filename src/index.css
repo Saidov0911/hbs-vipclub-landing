@@ -122,6 +122,10 @@
     color: transparent;
   }
 
+  .icon-gold {
+    color: hsl(45 90% 65%);
+  }
+
   .border-gold-soft {
     border: 1px solid hsl(43 65% 55% / 0.25);
   }

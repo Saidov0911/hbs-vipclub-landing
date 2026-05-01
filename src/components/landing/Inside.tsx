@@ -71,7 +71,7 @@ const FeatureCard = ({
           "h-12 w-12 rounded-xl flex items-center justify-center mb-5 border",
           highlight
             ? "bg-gradient-gold border-transparent text-primary-foreground"
-            : "bg-secondary/60 border-primary/20 text-gold"
+            : "bg-secondary/60 border-primary/20 icon-gold"
         )}
       >
         <Icon className="h-5 w-5" />

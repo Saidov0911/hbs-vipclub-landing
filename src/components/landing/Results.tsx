@@ -5,6 +5,7 @@ import { ChartScreen, FeedbackScreen, TelegramChatScreen } from "./Screens";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, MessageSquare, TrendingUp, Users } from "lucide-react";
+import phoneTelegram from "@/assets/phone-telegram.png";
 
 export const Results = () => {
   const { t } = useI18n();

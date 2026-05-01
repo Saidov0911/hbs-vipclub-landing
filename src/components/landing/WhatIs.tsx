@@ -19,7 +19,7 @@ export const WhatIs = () => {
         {items.map(({ icon: Icon, key }, i) => (
           <Card key={key} delay={i * 80}>
             <div className="h-11 w-11 rounded-xl bg-gradient-gold-soft border border-primary/25 flex items-center justify-center mb-5">
-              <Icon className="h-5 w-5 text-gold" />
+              <Icon className="h-5 w-5 icon-gold" />
             </div>
             <h3 className="font-display font-semibold text-lg text-foreground mb-2">{t(`${key}.title`)}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{t(`${key}.desc`)}</p>

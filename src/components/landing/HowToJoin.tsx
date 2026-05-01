@@ -4,12 +4,16 @@ import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
 import { BOT_URL } from "@/i18n/strings";
 import { cn } from "@/lib/utils";
+import step1Img from "@/assets/step-1-signup.png";
+import step2Img from "@/assets/step-2-bot.png";
+import step3Img from "@/assets/step-3-payment.png";
+import step4Img from "@/assets/step-4-group.png";
 
 const steps = [
-  { n: "01", key: "join.1" },
-  { n: "02", key: "join.2" },
-  { n: "03", key: "join.3" },
-  { n: "04", key: "join.4" },
+  { n: "01", key: "join.1", img: step1Img },
+  { n: "02", key: "join.2", img: step2Img },
+  { n: "03", key: "join.3", img: step3Img },
+  { n: "04", key: "join.4", img: step4Img },
 ];
 
 export const HowToJoin = () => {
@@ -22,7 +26,14 @@ export const HowToJoin = () => {
           <div className="absolute left-[31px] md:left-[35px] top-3 bottom-3 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
           <div className="space-y-4">
             {steps.map((s, i) => (
-              <Step key={s.n} n={s.n} title={t(`${s.key}.title`)} desc={t(`${s.key}.desc`)} delay={i * 100} />
+              <Step
+                key={s.n}
+                n={s.n}
+                title={t(`${s.key}.title`)}
+                desc={t(`${s.key}.desc`)}
+                img={s.img}
+                delay={i * 100}
+              />
             ))}
           </div>
         </div>
@@ -44,7 +55,19 @@ export const HowToJoin = () => {
   );
 };
 
-const Step = ({ n, title, desc, delay }: { n: string; title: string; desc: string; delay: number }) => {
+const Step = ({
+  n,
+  title,
+  desc,
+  img,
+  delay,
+}: {
+  n: string;
+  title: string;
+  desc: string;
+  img: string;
+  delay: number;
+}) => {
   const { ref, inView } = useInView<HTMLDivElement>();
   return (
     <div
@@ -58,9 +81,21 @@ const Step = ({ n, title, desc, delay }: { n: string; title: string; desc: strin
         </div>
         <div className="absolute inset-0 rounded-2xl bg-primary/30 blur-xl -z-10" />
       </div>
-      <div className="glass rounded-2xl p-5 md:p-6 flex-1">
-        <h3 className="font-display font-semibold text-lg text-foreground mb-1.5">{title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+      <div className="glass rounded-2xl p-5 md:p-6 flex-1 flex items-start gap-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="font-display font-semibold text-lg text-foreground mb-1.5">{title}</h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+        </div>
+        <div className="shrink-0 hidden sm:block">
+          <div className="relative rounded-xl overflow-hidden border border-primary/20 bg-background/40 shadow-gold w-[88px] md:w-[104px]">
+            <img
+              src={img}
+              alt={`${title} screenshot`}
+              loading="lazy"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

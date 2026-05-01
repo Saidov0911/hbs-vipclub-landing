@@ -68,23 +68,6 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Laptop mockup rising from bottom */}
-        <div className="relative mt-14 md:mt-20 animate-slide-up">
-          <div className="absolute -inset-x-10 -top-10 bottom-0 -z-10 bg-gradient-to-t from-primary/10 via-primary/5 to-transparent blur-3xl" />
-          <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
-            <LaptopMockup className="px-2">
-              <img
-                src={telegramPreview}
-                alt="HBS VIP Club Telegram preview"
-                className="w-full h-full object-contain object-top bg-background"
-                loading="eager"
-                decoding="async"
-              />
-            </LaptopMockup>
-            {/* fade overlay so the laptop disappears into the next section */}
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
-          </div>
-        </div>
       </div>
     </section>
   );

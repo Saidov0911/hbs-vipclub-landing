@@ -76,8 +76,9 @@ export const Hero = () => {
               <img
                 src={telegramPreview}
                 alt="HBS VIP Club Telegram preview"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-contain object-top bg-background"
                 loading="eager"
+                decoding="async"
               />
             </LaptopMockup>
             {/* fade overlay so the laptop disappears into the next section */}

@@ -52,7 +52,13 @@ export const Results = () => {
             <div className="relative">
               <Label icon={CheckCircle2} className="mb-3">{t("results.label.4")}</Label>
               <PhoneMockup>
-                <TelegramChatScreen variant="signals" />
+                <img
+                  src={phoneTelegram}
+                  alt="HBS VIP Club Telegram chat list"
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
               </PhoneMockup>
             </div>
           </Reveal>

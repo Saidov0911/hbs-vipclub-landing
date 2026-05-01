@@ -10,10 +10,10 @@ import step3Img from "@/assets/step-3-payment.png";
 import step4Img from "@/assets/step-4-group.png";
 
 const steps = [
-  { n: "01", key: "join.1", img: step1Img },
-  { n: "02", key: "join.2", img: step2Img },
-  { n: "03", key: "join.3", img: step3Img },
-  { n: "04", key: "join.4", img: step4Img },
+  { n: "01", key: "join.1", img: step1Img, half: "top" as const },
+  { n: "02", key: "join.2", img: step2Img, half: "bottom" as const },
+  { n: "03", key: "join.3", img: step3Img, half: "bottom" as const },
+  { n: "04", key: "join.4", img: step4Img, half: "top" as const },
 ];
 
 export const HowToJoin = () => {
@@ -32,6 +32,7 @@ export const HowToJoin = () => {
                 title={t(`${s.key}.title`)}
                 desc={t(`${s.key}.desc`)}
                 img={s.img}
+                half={s.half}
                 delay={i * 100}
               />
             ))}
@@ -60,15 +61,25 @@ const Step = ({
   title,
   desc,
   img,
+  half,
   delay,
 }: {
   n: string;
   title: string;
   desc: string;
   img: string;
+  half: "top" | "bottom";
   delay: number;
 }) => {
   const { ref, inView } = useInView<HTMLDivElement>();
+  // tilt alternates depending on half so the 3D angle feels natural
+  const tilt =
+    half === "top"
+      ? "perspective(900px) rotateX(14deg) rotateY(-10deg) rotateZ(-2deg)"
+      : "perspective(900px) rotateX(-14deg) rotateY(10deg) rotateZ(2deg)";
+  // show only the requested half by translating the inner image
+  const objectPosition = half === "top" ? "center top" : "center bottom";
+
   return (
     <div
       ref={ref}
@@ -86,14 +97,34 @@ const Step = ({
           <h3 className="font-display font-semibold text-lg text-foreground mb-1.5">{title}</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
         </div>
-        <div className="shrink-0 hidden sm:block">
-          <div className="relative rounded-xl overflow-hidden border border-primary/20 bg-background/40 shadow-gold w-[88px] md:w-[104px]">
-            <img
-              src={img}
-              alt={`${title} screenshot`}
-              loading="lazy"
-              className="w-full h-auto object-cover"
-            />
+        <div className="shrink-0 hidden sm:block [perspective:1000px]">
+          <div
+            className="relative w-[110px] md:w-[130px] h-[150px] md:h-[180px] transition-transform duration-500 hover:!transform-none"
+            style={{ transform: tilt, transformStyle: "preserve-3d" }}
+          >
+            {/* gold glow behind */}
+            <div className="absolute -inset-2 rounded-2xl bg-gradient-gold opacity-30 blur-xl -z-10" />
+            {/* frame */}
+            <div className="relative h-full w-full rounded-2xl overflow-hidden border border-primary/40 bg-background/60 shadow-gold ring-1 ring-primary/20">
+              <img
+                src={img}
+                alt={`${title} screenshot`}
+                loading="lazy"
+                className="w-full h-full object-cover"
+                style={{ objectPosition }}
+              />
+              {/* fade on the cropped edge for soft cut */}
+              <div
+                className={cn(
+                  "pointer-events-none absolute inset-x-0 h-12",
+                  half === "top"
+                    ? "bottom-0 bg-gradient-to-b from-transparent to-background/90"
+                    : "top-0 bg-gradient-to-t from-transparent to-background/90"
+                )}
+              />
+              {/* glossy highlight */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent mix-blend-overlay" />
+            </div>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { CheckCircle2, MessageSquare, TrendingUp, Users } from "lucide-react";
 import phoneTelegram from "@/assets/phone-telegram.png";
 import signalResults from "@/assets/signal-results.png";
 import joizBot from "@/assets/joiz-bot.png";
+import vipChat from "@/assets/vip-chat.png";
 
 export const Results = () => {
   const { t } = useI18n();
@@ -22,7 +23,13 @@ export const Results = () => {
               {t("results.label.2")}
             </Label>
             <LaptopMockup>
-              <TelegramChatScreen variant="vip" />
+              <img
+                src={vipChat}
+                alt="HBS VIP Club Darslar va Materiallar"
+                className="w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
+              />
             </LaptopMockup>
             <FloatingStatCard
               className="hidden md:flex absolute right-2 top-10"

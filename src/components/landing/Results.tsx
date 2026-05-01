@@ -58,7 +58,7 @@ export const Results = () => {
           </Reveal>
           <Reveal className="lg:col-span-2 flex justify-center" delay={150}>
             <div className="relative">
-              <Label icon={CheckCircle2} className="mb-3">{t("results.label.4")}</Label>
+              <Label icon={CheckCircle2} className="mb-3">{t("results.label.1")}</Label>
               <PhoneMockup>
                 <img
                   src={phoneTelegram}

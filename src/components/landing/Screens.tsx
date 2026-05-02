@@ -179,26 +179,35 @@ export const ChartScreen = () => {
   );
 };
 
-/** Feedback wall — multiple short testimonials. */
+import fb1 from "@/assets/feedback/fb-1.png";
+import fb2 from "@/assets/feedback/fb-2.png";
+import fb3 from "@/assets/feedback/fb-3.png";
+import fb4 from "@/assets/feedback/fb-4.png";
+import fb5 from "@/assets/feedback/fb-5.png";
+import fb6 from "@/assets/feedback/fb-6.png";
+import fb7 from "@/assets/feedback/fb-7.png";
+import fb8 from "@/assets/feedback/fb-8.png";
+
+const FEEDBACK_IMAGES = [fb1, fb2, fb3, fb4, fb5, fb6, fb7, fb8];
+
+/** Feedback wall — real Telegram screenshots from VIP Club members. */
 export const FeedbackScreen = () => (
-  <div className="h-full w-full bg-[hsl(222_55%_5%)] p-4 grid grid-cols-2 gap-3 content-start">
-    {[
-      { who: "@ulug‘bek", txt: "3 oyda +42% natija. Klub sifatli." },
-      { who: "@nodir", txt: "Mentorlar har savolga javob beradi." },
-      { who: "@sevara", txt: "Darslar tushunarli, tavsiya qilaman." },
-      { who: "@jasur", txt: "10$ challenge bilan boshladim, ajoyib." },
-    ].map((f) => (
-      <div key={f.who} className="rounded-xl bg-card/70 border border-border/60 p-3">
-        <div className="flex items-center gap-2 mb-1.5">
-          <div className="h-6 w-6 rounded-full bg-gradient-gold" />
-          <div className="text-[11px] font-semibold text-foreground">{f.who}</div>
+  <div className="h-full w-full bg-[hsl(222_55%_5%)] p-3 md:p-4 overflow-hidden">
+    <div className="h-full w-full columns-2 md:columns-4 gap-3 [column-fill:_balance]">
+      {FEEDBACK_IMAGES.map((src, i) => (
+        <div
+          key={i}
+          className="mb-3 break-inside-avoid rounded-lg overflow-hidden border border-border/60 bg-card/40 shadow-md"
+        >
+          <img
+            src={src}
+            alt={`HBS VIP Club a'zo fikri ${i + 1}`}
+            className="w-full h-auto block"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div className="text-[11px] text-foreground/80 leading-snug">{f.txt}</div>
-        <div className="flex items-center gap-3 mt-2 text-[10px] text-muted-foreground">
-          <span className="flex items-center gap-1"><Heart className="h-3 w-3 text-accent" /> 24</span>
-          <span className="flex items-center gap-1"><MessageCircle className="h-3 w-3" /> 4</span>
-        </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 );

@@ -131,7 +131,7 @@ export const Founder = () => {
                   <div
                     key={c.name}
                     style={{ transitionDelay: `${i * 90}ms` }}
-                    className="group/brand relative flex items-center justify-center rounded-xl bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/70 transition-all duration-300 hover:-translate-y-0.5 p-3 h-20 sm:h-24 overflow-hidden"
+                    className="group/brand relative flex items-center justify-center rounded-lg bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/70 transition-all duration-300 hover:-translate-y-0.5 p-2 h-12 sm:h-14 overflow-hidden"
                     title={c.name}
                   >
                     <div className="pointer-events-none absolute inset-0 opacity-0 group-hover/brand:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-transparent to-primary-glow/10" />

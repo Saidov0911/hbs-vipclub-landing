@@ -126,7 +126,9 @@ export const Hero = () => {
 /** Horizontal Telegram screenshot carousel — auto-scrolls and supports left/right arrow clicks. */
 const ScrollGallery = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [progress, setProgress] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const pausedRef = useRef(false);
   const smoothUntilRef = useRef(0);

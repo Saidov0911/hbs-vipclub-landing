@@ -7,6 +7,7 @@ import founderPhoto from "@/assets/founder-mushlihiddin.png";
 import brandElmakon from "@/assets/brand-elmakon.png";
 import brandBmElectronics from "@/assets/brand-bm-electronics.png";
 import brandHbs from "@/assets/brand-hbs.png";
+import brandSaraf from "@/assets/brand-saraf.png";
 
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
@@ -19,6 +20,7 @@ const COMPANIES: { name: string; src: string }[] = [
   { name: "Elmakon", src: brandElmakon },
   { name: "BM Electronics", src: brandBmElectronics },
   { name: "HBS VIP Club", src: brandHbs },
+  { name: "Saraf", src: brandSaraf },
 ];
 
 export const Founder = () => {
@@ -124,7 +126,7 @@ export const Founder = () => {
                 </span>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
               </div>
-              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
                 {COMPANIES.map((c, i) => (
                   <div
                     key={c.name}

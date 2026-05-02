@@ -4,12 +4,21 @@ import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import founderPhoto from "@/assets/founder-mushlihiddin.png";
+import brandElmakon from "@/assets/brand-elmakon.png";
+import brandBmElectronics from "@/assets/brand-bm-electronics.png";
+import brandHbs from "@/assets/brand-hbs.png";
 
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
   { key: "founder.badge.2", icon: Sparkles },
   { key: "founder.badge.3", icon: TrendingUp },
   { key: "founder.badge.4", icon: Briefcase },
+];
+
+const COMPANIES: { name: string; src: string }[] = [
+  { name: "Elmakon", src: brandElmakon },
+  { name: "BM Electronics", src: brandBmElectronics },
+  { name: "HBS VIP Club", src: brandHbs },
 ];
 
 export const Founder = () => {

@@ -84,15 +84,20 @@ const PriceCard = ({
         inView && "is-visible"
       )}
     >
-      {highlight && (
-        <>
-          <div className="absolute -inset-px rounded-2xl bg-gradient-gold opacity-25 blur-xl -z-10" />
-          {badge && (
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-gold text-primary-foreground text-[11px] font-bold uppercase tracking-wider rounded-full px-3 py-1 shadow-gold">
-              {badge}
-            </div>
+      {badge && (
+        <div
+          className={cn(
+            "absolute -top-3 left-1/2 -translate-x-1/2 text-[11px] font-bold uppercase tracking-wider rounded-full px-3 py-1",
+            highlight
+              ? "bg-gradient-gold text-primary-foreground shadow-gold"
+              : "bg-secondary text-foreground border border-border"
           )}
-        </>
+        >
+          {badge}
+        </div>
+      )}
+      {highlight && (
+        <div className="absolute -inset-px rounded-2xl bg-gradient-gold opacity-25 blur-xl -z-10" />
       )}
       <div className="text-sm font-semibold text-muted-foreground mb-3">{label}</div>
       <div className="flex items-baseline gap-2 mb-5">

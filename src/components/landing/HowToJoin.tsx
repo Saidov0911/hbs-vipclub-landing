@@ -230,10 +230,10 @@ const FinalStep = ({ t }: { t: (k: string) => string }) => {
           </div>
 
           <h3 className="relative font-display font-bold text-xl md:text-2xl text-foreground mb-2">
-            Tayyor — endi botga o‘ting
+            {t("join.final.title")}
           </h3>
           <p className="relative text-sm md:text-base text-muted-foreground mb-6 max-w-md mx-auto">
-            Telegram bot sizni ro‘yxatdan o‘tkazadi va to‘lovdan keyin yopiq guruhga avtomatik qo‘shadi.
+            {t("join.final.desc")}
           </p>
 
           <a

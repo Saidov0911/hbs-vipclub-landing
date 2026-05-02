@@ -106,6 +106,10 @@ export default {
           "0%": { opacity: "0", transform: "translateY(120px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        flow: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(400%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.25s ease-out",

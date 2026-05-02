@@ -4,12 +4,21 @@ import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import founderPhoto from "@/assets/founder-mushlihiddin.png";
+import brandElmakon from "@/assets/brand-elmakon.png";
+import brandBmElectronics from "@/assets/brand-bm-electronics.png";
+import brandHbs from "@/assets/brand-hbs.png";
 
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
   { key: "founder.badge.2", icon: Sparkles },
   { key: "founder.badge.3", icon: TrendingUp },
   { key: "founder.badge.4", icon: Briefcase },
+];
+
+const COMPANIES: { name: string; src: string }[] = [
+  { name: "Elmakon", src: brandElmakon },
+  { name: "BM Electronics", src: brandBmElectronics },
+  { name: "HBS VIP Club", src: brandHbs },
 ];
 
 export const Founder = () => {
@@ -104,6 +113,39 @@ export const Founder = () => {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Companies strip */}
+            <div className="mt-7">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                <span className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground/80 font-semibold">
+                  Asos solgan / boshqargan
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              </div>
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                {COMPANIES.map((c, i) => (
+                  <div
+                    key={c.name}
+                    style={{ transitionDelay: `${i * 90}ms` }}
+                    className="group/brand relative flex items-center justify-center rounded-xl bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/70 transition-all duration-300 hover:-translate-y-0.5 p-3 h-20 sm:h-24 overflow-hidden"
+                    title={c.name}
+                  >
+                    <div className="pointer-events-none absolute inset-0 opacity-0 group-hover/brand:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-transparent to-primary-glow/10" />
+                    <img
+                      src={c.src}
+                      alt={c.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="relative max-h-full max-w-full object-contain rounded-md grayscale opacity-70 group-hover/brand:grayscale-0 group-hover/brand:opacity-100 transition-all duration-500 group-hover/brand:scale-[1.04]"
+                    />
+                    <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.18em] text-muted-foreground/70 opacity-0 group-hover/brand:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                      {c.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

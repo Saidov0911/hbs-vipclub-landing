@@ -191,8 +191,12 @@ import fb9 from "@/assets/feedback/fb-9.png";
 import fb10 from "@/assets/feedback/fb-10.png";
 import fb11 from "@/assets/feedback/fb-11.png";
 import fb12 from "@/assets/feedback/fb-12.png";
+import fb13 from "@/assets/feedback/fb-13.png";
+import fb14 from "@/assets/feedback/fb-14.png";
+import fb15 from "@/assets/feedback/fb-15.png";
+import fb16 from "@/assets/feedback/fb-16.png";
 
-const FEEDBACK_IMAGES = [fb1, fb2, fb3, fb4, fb5, fb6, fb7, fb8, fb9, fb10, fb11, fb12];
+const FEEDBACK_IMAGES = [fb1, fb2, fb3, fb4, fb5, fb6, fb7, fb8, fb9, fb10, fb11, fb12, fb13, fb14, fb15, fb16];
 
 /** Feedback wall — real Telegram screenshots from VIP Club members. */
 export const FeedbackScreen = () => (

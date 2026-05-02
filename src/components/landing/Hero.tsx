@@ -128,3 +128,94 @@ export const Hero = () => {
     </section>
   );
 };
+
+/** Smooth auto-scrolling feedback gallery with gradient scroll progress bar. */
+const ScrollGallery = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Auto-scroll loop
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    const SPEED = 28; // px per second
+
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (!paused) {
+        const max = el.scrollHeight - el.clientHeight;
+        if (max > 0) {
+          let next = el.scrollTop + SPEED * dt;
+          if (next >= max) next = 0; // loop
+          el.scrollTop = next;
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [paused]);
+
+  // Track scroll progress
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const max = el.scrollHeight - el.clientHeight;
+      setProgress(max > 0 ? (el.scrollTop / max) * 100 : 0);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div
+      className="relative h-full w-full bg-[hsl(222_55%_5%)]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      {/* Scrollable content */}
+      <div
+        ref={scrollRef}
+        className="h-full w-full overflow-y-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        <div className="columns-2 md:columns-3 gap-2 md:gap-3 p-2 md:p-3 [column-fill:_balance]">
+          {GALLERY.map((src, i) => (
+            <div
+              key={i}
+              className="mb-2 md:mb-3 break-inside-avoid rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30"
+            >
+              <img
+                src={src}
+                alt={`HBS VIP Club feedback ${i + 1}`}
+                className="w-full h-auto block"
+                loading={i < 4 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Top fade */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[hsl(222_55%_5%)] to-transparent" />
+      {/* Bottom fade */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[hsl(222_55%_5%)] to-transparent" />
+
+      {/* Gradient scroll progress bar (right edge) */}
+      <div className="pointer-events-none absolute right-1.5 top-3 bottom-3 w-1 rounded-full bg-foreground/5 overflow-hidden">
+        <div
+          className="absolute inset-x-0 top-0 rounded-full bg-gradient-to-b from-gold via-primary to-primary-glow shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-[height] duration-150 ease-linear"
+          style={{ height: `${Math.max(8, progress)}%` }}
+        />
+      </div>
+    </div>
+  );
+};

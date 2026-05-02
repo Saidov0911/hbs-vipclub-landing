@@ -3,6 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
 import telegramPreview from "@/assets/telegram-preview.png";
+import vipChat from "@/assets/vip-chat.png";
+import joizBot from "@/assets/joiz-bot.png";
+import phoneTelegram from "@/assets/phone-telegram.png";
 
 export const Hero = () => {
   const { t } = useI18n();
@@ -106,13 +109,36 @@ export const Hero = () => {
 
           <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
             <LaptopMockup className="px-2">
-              <img
-                src={telegramPreview}
-                alt="HBS VIP Club Telegram preview"
-                className="w-full h-full object-contain object-top bg-background"
-                loading="eager"
-                decoding="async"
-              />
+              <div className="h-full w-full overflow-y-auto bg-background scroll-smooth [scrollbar-width:thin]">
+                <img
+                  src={telegramPreview}
+                  alt="HBS VIP Club Telegram preview"
+                  className="w-full h-auto block"
+                  loading="eager"
+                  decoding="async"
+                />
+                <img
+                  src={vipChat}
+                  alt="HBS VIP Club Darslar va Materiallar"
+                  className="w-full h-auto block"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src={joizBot}
+                  alt="Joiz kripto tekshiruv bot"
+                  className="w-full h-auto block"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src={phoneTelegram}
+                  alt="HBS VIP Club signal natijalari"
+                  className="w-full h-auto block"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </LaptopMockup>
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
           </div>

@@ -126,7 +126,9 @@ export const Hero = () => {
 /** Horizontal Telegram screenshot carousel — auto-scrolls and supports left/right arrow clicks. */
 const ScrollGallery = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [progress, setProgress] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const pausedRef = useRef(false);
   const smoothUntilRef = useRef(0);
@@ -162,13 +164,27 @@ const ScrollGallery = () => {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Track scroll progress
+  // Track scroll progress + active index (item closest to viewport center)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     const onScroll = () => {
       const max = el.scrollWidth - el.clientWidth;
       setProgress(max > 0 ? (el.scrollLeft / max) * 100 : 0);
+
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      itemRefs.current.forEach((node, i) => {
+        if (!node) return;
+        const itemCenter = node.offsetLeft + node.clientWidth / 2;
+        const d = Math.abs(itemCenter - center);
+        if (d < bestDist) {
+          bestDist = d;
+          bestIdx = i;
+        }
+      });
+      setActiveIndex(bestIdx);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -214,24 +230,33 @@ const ScrollGallery = () => {
         className="h-full w-full overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <div className="flex gap-3 md:gap-4 p-3 md:p-4 h-full">
-          {GALLERY.map((src, i) => (
-            <button
-              type="button"
-              key={i}
-              onClick={(e) => centerItem(e.currentTarget)}
-              className="shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30 shadow-card cursor-pointer transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/60"
-              aria-label={`Show screenshot ${i + 1}`}
-            >
-              <img
-                src={src}
-                alt={`HBS VIP Club Telegram ${i + 1}`}
-                className="h-full w-auto block object-contain pointer-events-none"
-                loading={i < 2 ? "eager" : "lazy"}
-                decoding="async"
-                draggable={false}
-              />
-            </button>
-          ))}
+          {GALLERY.map((src, i) => {
+            const isActive = i === activeIndex;
+            return (
+              <button
+                type="button"
+                key={i}
+                ref={(node) => (itemRefs.current[i] = node)}
+                onClick={(e) => centerItem(e.currentTarget)}
+                className={`shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border bg-card/30 shadow-card cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/60 ${
+                  isActive
+                    ? "border-primary/70 ring-2 ring-primary/50 shadow-[0_0_24px_hsl(var(--primary)/0.35)] scale-[1.02]"
+                    : "border-border/50 opacity-70 hover:opacity-100 hover:scale-[1.02]"
+                }`}
+                aria-label={`Show screenshot ${i + 1}`}
+                aria-current={isActive ? "true" : undefined}
+              >
+                <img
+                  src={src}
+                  alt={`HBS VIP Club Telegram ${i + 1}`}
+                  className="h-full w-auto block object-contain pointer-events-none"
+                  loading={i < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                  draggable={false}
+                />
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -257,12 +282,40 @@ const ScrollGallery = () => {
         <ChevronRight className="h-5 w-5" />
       </button>
 
-      {/* Gradient scroll progress bar (bottom edge) */}
-      <div className="pointer-events-none absolute left-3 right-3 bottom-1.5 h-1 rounded-full bg-foreground/5 overflow-hidden">
+      {/* Gradient scroll progress bar (bottom edge) with active marker */}
+      <div className="pointer-events-none absolute left-3 right-3 bottom-3 h-1 rounded-full bg-foreground/5 overflow-visible">
         <div
           className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-gold via-primary to-primary-glow shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-[width] duration-150 ease-linear"
-          style={{ width: `${Math.max(8, progress)}%` }}
+          style={{ width: `${Math.max(2, progress)}%` }}
         />
+        <div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.9)] ring-2 ring-background transition-[left] duration-150 ease-linear"
+          style={{ left: `${progress}%` }}
+        />
+      </div>
+
+      {/* Dot indicators (one per screenshot) */}
+      <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 bottom-6 z-10 flex items-center gap-1.5">
+        {GALLERY.map((_, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to screenshot ${i + 1}`}
+              aria-current={isActive ? "true" : undefined}
+              onClick={() => {
+                const node = itemRefs.current[i];
+                if (node) centerItem(node);
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                isActive
+                  ? "w-6 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
+                  : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
+              }`}
+            />
+          );
+        })}
       </div>
     </div>
   );

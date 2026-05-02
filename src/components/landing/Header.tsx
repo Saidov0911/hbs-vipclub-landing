@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
-import { PlaceholderLogo } from "./Placeholders";
+import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -45,7 +45,7 @@ export const Header = () => {
           )}
         >
           <button onClick={() => scrollTo("#top")} aria-label="HBS VIP Club">
-            <PlaceholderLogo />
+            <Logo size={40} />
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">

@@ -1,7 +1,7 @@
 import { Send } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { BOT_URL, SUPPORT_URL } from "@/i18n/strings";
-import { PlaceholderLogo } from "./Placeholders";
+import { Logo } from "./Logo";
 
 export const Footer = () => {
   const { t } = useI18n();
@@ -10,7 +10,7 @@ export const Footer = () => {
       <div className="container">
         <div className="grid md:grid-cols-3 gap-8 items-start">
           <div>
-            <PlaceholderLogo />
+            <Logo size={48} />
             <p className="mt-3 text-sm text-muted-foreground max-w-xs">{t("footer.tagline")}</p>
           </div>
           <div className="md:text-center text-sm">

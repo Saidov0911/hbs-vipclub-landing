@@ -10,21 +10,24 @@ import step3Img from "@/assets/step-3-payment.png";
 import step4Img from "@/assets/step-4-group.png";
 
 const steps = [
-  { n: "01", key: "join.1", img: step1Img, half: "top" as const },
-  { n: "02", key: "join.2", img: step2Img, half: "bottom" as const },
-  { n: "03", key: "join.3", img: step3Img, half: "bottom" as const },
-  { n: "04", key: "join.4", img: step4Img, half: "top" as const },
+  { n: "01", key: "join.1", img: step1Img, imgSide: "right" as const },
+  { n: "02", key: "join.2", img: step2Img, imgSide: "left" as const },
+  { n: "03", key: "join.3", img: step3Img, imgSide: "right" as const },
+  { n: "04", key: "join.4", img: step4Img, imgSide: "left" as const },
 ];
 
 export const HowToJoin = () => {
   const { t } = useI18n();
   return (
     <Section id="join" eyebrow="Qo‘shilish" title={t("join.title")} subtitle={t("join.subtitle")}>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="relative">
-          {/* vertical line */}
-          <div className="absolute left-[31px] md:left-[35px] top-3 bottom-3 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
-          <div className="space-y-4">
+          {/* center vertical line (desktop) */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
+          {/* left vertical line (mobile) */}
+          <div className="md:hidden absolute left-[31px] top-3 bottom-3 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
+
+          <div className="space-y-10 md:space-y-16">
             {steps.map((s, i) => (
               <Step
                 key={s.n}
@@ -32,14 +35,14 @@ export const HowToJoin = () => {
                 title={t(`${s.key}.title`)}
                 desc={t(`${s.key}.desc`)}
                 img={s.img}
-                half={s.half}
+                imgSide={s.imgSide}
                 delay={i * 100}
               />
             ))}
           </div>
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-14 text-center">
           <a
             href={BOT_URL}
             target="_blank"
@@ -61,71 +64,94 @@ const Step = ({
   title,
   desc,
   img,
-  half,
+  imgSide,
   delay,
 }: {
   n: string;
   title: string;
   desc: string;
   img: string;
-  half: "top" | "bottom";
+  imgSide: "left" | "right";
   delay: number;
 }) => {
   const { ref, inView } = useInView<HTMLDivElement>();
-  // tilt alternates depending on half so the 3D angle feels natural
+
+  // 3D tilt — direction depends on which side the image sits
   const tilt =
-    half === "top"
-      ? "perspective(900px) rotateX(14deg) rotateY(-10deg) rotateZ(-2deg)"
-      : "perspective(900px) rotateX(-14deg) rotateY(10deg) rotateZ(2deg)";
-  // show only the requested half by translating the inner image
-  const objectPosition = half === "top" ? "center top" : "center bottom";
+    imgSide === "right"
+      ? "perspective(1000px) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg)"
+      : "perspective(1000px) rotateY(14deg) rotateX(6deg) rotateZ(2deg)";
+
+  const ImageBlock = (
+    <div className="flex justify-center md:block [perspective:1200px]">
+      <div
+        className="relative w-[180px] sm:w-[200px] md:w-[230px] aspect-[9/16] transition-transform duration-500 hover:!transform-none"
+        style={{ transform: tilt, transformStyle: "preserve-3d" }}
+      >
+        <div className="absolute -inset-3 rounded-3xl bg-gradient-gold opacity-30 blur-2xl -z-10" />
+        <div className="relative h-full w-full rounded-3xl overflow-hidden border border-primary/40 bg-background/60 shadow-gold ring-1 ring-primary/20">
+          <img
+            src={img}
+            alt={`${title} screenshot`}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent mix-blend-overlay" />
+        </div>
+      </div>
+    </div>
+  );
+
+  const TextBlock = (
+    <div
+      className={cn(
+        "glass rounded-2xl p-5 md:p-6",
+        imgSide === "right" ? "md:text-right" : "md:text-left"
+      )}
+    >
+      <h3 className="font-display font-semibold text-xl text-foreground mb-2">{title}</h3>
+      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{desc}</p>
+    </div>
+  );
 
   return (
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={cn("relative flex items-start gap-5 reveal", inView && "is-visible")}
+      className={cn("relative reveal", inView && "is-visible")}
     >
-      <div className="relative shrink-0">
-        <div className="h-[64px] w-[64px] md:h-[72px] md:w-[72px] rounded-2xl bg-gradient-gold flex items-center justify-center font-display font-extrabold text-primary-foreground text-lg shadow-gold">
-          {n}
-        </div>
-        <div className="absolute inset-0 rounded-2xl bg-primary/30 blur-xl -z-10" />
-      </div>
-      <div className="glass rounded-2xl p-5 md:p-6 flex-1 flex items-start gap-4">
-        <div className="flex-1 min-w-0">
-          <h3 className="font-display font-semibold text-lg text-foreground mb-1.5">{title}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-        </div>
-        <div className="shrink-0 hidden sm:block [perspective:1000px]">
-          <div
-            className="relative w-[110px] md:w-[130px] h-[150px] md:h-[180px] transition-transform duration-500 hover:!transform-none"
-            style={{ transform: tilt, transformStyle: "preserve-3d" }}
-          >
-            {/* gold glow behind */}
-            <div className="absolute -inset-2 rounded-2xl bg-gradient-gold opacity-30 blur-xl -z-10" />
-            {/* frame */}
-            <div className="relative h-full w-full rounded-2xl overflow-hidden border border-primary/40 bg-background/60 shadow-gold ring-1 ring-primary/20">
-              <img
-                src={img}
-                alt={`${title} screenshot`}
-                loading="lazy"
-                className="w-full h-full object-cover"
-                style={{ objectPosition }}
-              />
-              {/* fade on the cropped edge for soft cut */}
-              <div
-                className={cn(
-                  "pointer-events-none absolute inset-x-0 h-12",
-                  half === "top"
-                    ? "bottom-0 bg-gradient-to-b from-transparent to-background/90"
-                    : "top-0 bg-gradient-to-t from-transparent to-background/90"
-                )}
-              />
-              {/* glossy highlight */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent mix-blend-overlay" />
+      {/* MOBILE layout: number on left, text on right, image below */}
+      <div className="md:hidden">
+        <div className="flex items-start gap-5">
+          <div className="relative shrink-0">
+            <div className="h-[64px] w-[64px] rounded-2xl bg-gradient-gold flex items-center justify-center font-display font-extrabold text-primary-foreground text-lg shadow-gold">
+              {n}
             </div>
+            <div className="absolute inset-0 rounded-2xl bg-primary/30 blur-xl -z-10" />
           </div>
+          <div className="flex-1 min-w-0">{TextBlock}</div>
+        </div>
+        <div className="mt-5 pl-[84px]">{ImageBlock}</div>
+      </div>
+
+      {/* DESKTOP layout: 3-column grid, number centered, text/image alternate sides */}
+      <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+        {/* LEFT slot */}
+        <div className={cn(imgSide === "left" ? "flex justify-end" : "")}>
+          {imgSide === "left" ? ImageBlock : TextBlock}
+        </div>
+
+        {/* CENTER number */}
+        <div className="relative z-10 shrink-0">
+          <div className="h-[80px] w-[80px] rounded-2xl bg-gradient-gold flex items-center justify-center font-display font-extrabold text-primary-foreground text-2xl shadow-gold">
+            {n}
+          </div>
+          <div className="absolute inset-0 rounded-2xl bg-primary/40 blur-2xl -z-10" />
+        </div>
+
+        {/* RIGHT slot */}
+        <div className={cn(imgSide === "right" ? "flex justify-start" : "")}>
+          {imgSide === "right" ? ImageBlock : TextBlock}
         </div>
       </div>
     </div>

@@ -40,6 +40,13 @@ const ITEMS: FeedbackItem[] = [
   { src: fb16, label: "Feedbacklar" },
 ];
 
+// Split into 3 rows
+const ROWS: FeedbackItem[][] = [
+  ITEMS.filter((_, i) => i % 3 === 0),
+  ITEMS.filter((_, i) => i % 3 === 1),
+  ITEMS.filter((_, i) => i % 3 === 2),
+];
+
 export const Results = () => {
   const { t } = useI18n();
 
@@ -49,39 +56,65 @@ export const Results = () => {
         <div className="relative">
           <div className="pointer-events-none absolute -inset-x-10 -top-10 -bottom-10 -z-10 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_70%)] blur-3xl" />
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [column-fill:_balance]">
-            {ITEMS.map((item, i) => (
-              <div
-                key={i}
-                className="group relative mb-4 break-inside-avoid rounded-xl overflow-hidden border border-border/60 bg-card/40 shadow-md hover:border-primary/40 hover:shadow-elegant transition-all duration-300"
-              >
-                <img
-                  src={item.src}
-                  alt={`HBS VIP Club — ${item.label} ${i + 1}`}
-                  className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading="lazy"
-                  decoding="async"
-                />
-                {/* Gradient + label overlay */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 px-3 py-1 text-[11px] md:text-xs font-semibold text-foreground">
-                    <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                    {item.label}
-                  </span>
-                </div>
-                {/* Always-visible compact badge top-left */}
-                <div className="absolute top-2.5 left-2.5">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-background/70 backdrop-blur-md border border-primary/30 px-2.5 py-1 text-[10px] md:text-[11px] font-medium text-foreground shadow-sm">
-                    <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                    {item.label}
-                  </span>
-                </div>
-              </div>
+          <div className="relative space-y-4 md:space-y-5 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+            {ROWS.map((row, rowIdx) => (
+              <MarqueeRow key={rowIdx} items={row} direction={rowIdx % 2 === 0 ? "left" : "right"} />
             ))}
           </div>
         </div>
       </Reveal>
     </Section>
+  );
+};
+
+const MarqueeRow = ({
+  items,
+  direction,
+}: {
+  items: FeedbackItem[];
+  direction: "left" | "right";
+}) => {
+  // Duplicate the array so the animation loops seamlessly
+  const loop = [...items, ...items];
+  return (
+    <div className="group/row overflow-hidden">
+      <div
+        className={cn(
+          "flex w-max gap-4 md:gap-5",
+          direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
+          "group-hover/row:[animation-play-state:paused]"
+        )}
+      >
+        {loop.map((item, i) => (
+          <div
+            key={i}
+            className="group relative w-[220px] sm:w-[260px] md:w-[300px] shrink-0 rounded-xl overflow-hidden border border-border/60 bg-card/40 shadow-md hover:border-primary/40 hover:shadow-elegant transition-all duration-300"
+          >
+            <img
+              src={item.src}
+              alt={`HBS VIP Club — ${item.label}`}
+              className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+            {/* Gradient + label overlay on hover */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 px-3 py-1 text-[11px] font-semibold text-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                {item.label}
+              </span>
+            </div>
+            {/* Always-visible compact badge */}
+            <div className="absolute top-2.5 left-2.5">
+              <span className="inline-flex items-center gap-1 rounded-full bg-background/70 backdrop-blur-md border border-primary/30 px-2.5 py-1 text-[10px] font-medium text-foreground shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                {item.label}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

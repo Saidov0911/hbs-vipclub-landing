@@ -4,23 +4,46 @@ import { Section } from "./Section";
 import { PlaceholderAvatar } from "./Placeholders";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
+import mentorMamur from "@/assets/mentor-mamur.png";
+import mentorAbdulloh from "@/assets/mentor-abdulloh.png";
 
-const mentors = ["mentor.1", "mentor.2", "mentor.3", "mentor.4"];
+const mentors: { key: string; photo?: string }[] = [
+  { key: "mentor.1", photo: mentorMamur },
+  { key: "mentor.2", photo: mentorAbdulloh },
+  { key: "mentor.3" },
+  { key: "mentor.4" },
+];
 
 export const Mentors = () => {
   const { t } = useI18n();
   return (
     <Section id="mentors" eyebrow="Jamoa" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-        {mentors.map((k, i) => (
-          <Card key={k} name={t(`${k}.name`)} role={t(`${k}.role`)} delay={i * 80} />
+        {mentors.map((m, i) => (
+          <Card
+            key={m.key}
+            name={t(`${m.key}.name`)}
+            role={t(`${m.key}.role`)}
+            photo={m.photo}
+            delay={i * 80}
+          />
         ))}
       </div>
     </Section>
   );
 };
 
-const Card = ({ name, role, delay }: { name: string; role: string; delay: number }) => {
+const Card = ({
+  name,
+  role,
+  photo,
+  delay,
+}: {
+  name: string;
+  role: string;
+  photo?: string;
+  delay: number;
+}) => {
   const { ref, inView } = useInView<HTMLDivElement>();
   return (
     <div
@@ -32,8 +55,22 @@ const Card = ({ name, role, delay }: { name: string; role: string; delay: number
       )}
     >
       <div className="relative inline-block mb-4">
-        <div className="absolute inset-0 rounded-full bg-gradient-gold blur-xl opacity-0 group-hover:opacity-50 transition-opacity" />
-        <PlaceholderAvatar name={name} size={108} ring />
+        <div className="absolute -inset-2 rounded-full bg-gradient-gold blur-xl opacity-30 group-hover:opacity-70 transition-opacity" />
+        {photo ? (
+          <div
+            className="relative h-28 w-28 rounded-full overflow-hidden ring-2 ring-primary/40 ring-offset-2 ring-offset-background bg-gradient-to-b from-secondary/60 to-background"
+          >
+            <img
+              src={photo}
+              alt={name}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-foreground/10" />
+          </div>
+        ) : (
+          <PlaceholderAvatar name={name} size={108} ring />
+        )}
       </div>
       <h3 className="font-display font-semibold text-base md:text-lg text-foreground">{name}</h3>
       <p className="mt-1 text-sm text-gold">{role}</p>

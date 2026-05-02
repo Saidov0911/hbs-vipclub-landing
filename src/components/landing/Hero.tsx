@@ -1,13 +1,7 @@
-import { ArrowRight, Sparkles, Send, Play, TrendingUp } from "lucide-react";
+import { ArrowRight, Sparkles, Send, Play } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
 import telegramPreview from "@/assets/telegram-preview.png";
-
-const stats = [
-  { value: "1 248+", label: "Faol a’zolar" },
-  { value: "+312%", label: "Eng yaxshi signal" },
-  { value: "24/7", label: "Jonli muhit" },
-];
 
 export const Hero = () => {
   const { t } = useI18n();

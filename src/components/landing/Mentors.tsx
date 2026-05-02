@@ -60,7 +60,7 @@ const mentors: MentorMeta[] = [
     market: "Crypto",
     accent: "text-amber-400",
     stats: [
-      { icon: Briefcase, text: "Moliya bozorida — 2 yillik tajriba" },
+      { icon: Briefcase, text: "Moliya bozorida — 3 yillik tajriba" },
       { icon: Wallet, text: "HBS jamoasi bilan $600 000 aylanma" },
     ],
   },

@@ -196,9 +196,8 @@ const ScrollGallery = () => {
     if (!el) return;
     const max = el.scrollWidth - el.clientWidth;
     const target = Math.max(0, Math.min(max, left));
-    pausedRef.current = true;
-    smoothUntilRef.current = performance.now() + 800; // block auto-scroll during animation
-    setPaused(true);
+    // Block auto-scroll only during the smooth animation; auto-scroll resumes after.
+    smoothUntilRef.current = performance.now() + 800;
     el.scrollTo({ left: target, behavior: "smooth" });
   };
 

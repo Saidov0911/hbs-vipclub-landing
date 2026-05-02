@@ -151,14 +151,27 @@ const Card = ({
           </h3>
           <p className="mt-1 text-sm text-gold/90">{role}</p>
 
-          {/* Stats list */}
-          <ul className="mt-4 space-y-2">
+          {/* Stats list — reveals on hover with staggered slide-up */}
+          <ul
+            className={cn(
+              "mt-4 space-y-2",
+              "max-h-0 opacity-0 overflow-hidden",
+              "transition-[max-height,opacity,margin] duration-500 ease-out",
+              "group-hover:max-h-[260px] group-hover:opacity-100 group-hover:mt-4"
+            )}
+          >
             {stats.map((s, idx) => {
               const SIcon = s.icon;
               return (
                 <li
                   key={idx}
-                  className="flex items-start gap-2 rounded-lg bg-secondary/40 border border-border/50 px-2.5 py-2 text-[12px] leading-snug text-muted-foreground"
+                  style={{ transitionDelay: `${120 + idx * 90}ms` }}
+                  className={cn(
+                    "flex items-start gap-2 rounded-lg bg-secondary/40 border border-border/50 px-2.5 py-2 text-[12px] leading-snug text-muted-foreground",
+                    "translate-y-2 opacity-0 transition-all duration-400 ease-out",
+                    "group-hover:translate-y-0 group-hover:opacity-100",
+                    "hover:border-primary/40 hover:bg-secondary/60 hover:text-foreground"
+                  )}
                 >
                   <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-primary/15 border border-primary/30 text-gold">
                     <SIcon className="h-3 w-3" />

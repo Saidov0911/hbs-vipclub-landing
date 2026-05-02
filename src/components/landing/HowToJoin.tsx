@@ -19,10 +19,10 @@ type Step = {
 };
 
 const steps: Step[] = [
-  { n: "01", key: "join.1", img: step1Img, imgSide: "right", duration: "30 son.", badge: "Tezkor" },
-  { n: "02", key: "join.2", img: step2Img, imgSide: "left", duration: "1 daq.", badge: "Avtomatik" },
-  { n: "03", key: "join.3", img: step3Img, imgSide: "right", duration: "1 daq.", badge: "Xavfsiz" },
-  { n: "04", key: "join.4", img: step4Img, imgSide: "left", duration: "Darhol", badge: "Tayyor" },
+  { n: "01", key: "join.1", img: step2Img, imgSide: "right", duration: "10 son.", badge: "Telegram" },
+  { n: "02", key: "join.2", img: step1Img, imgSide: "left", duration: "30 son.", badge: "Tezkor" },
+  { n: "03", key: "join.3", img: step3Img, imgSide: "right", duration: "1 daq.", badge: "Xavfsiz to‘lov" },
+  { n: "04", key: "join.4", img: step4Img, imgSide: "left", duration: "Darhol", badge: "Avtomatik" },
 ];
 
 export const HowToJoin = () => {
@@ -230,10 +230,10 @@ const FinalStep = ({ t }: { t: (k: string) => string }) => {
           </div>
 
           <h3 className="relative font-display font-bold text-xl md:text-2xl text-foreground mb-2">
-            Tayyor — endi botga o‘ting
+            {t("join.final.title")}
           </h3>
           <p className="relative text-sm md:text-base text-muted-foreground mb-6 max-w-md mx-auto">
-            Telegram bot sizni ro‘yxatdan o‘tkazadi va to‘lovdan keyin yopiq guruhga avtomatik qo‘shadi.
+            {t("join.final.desc")}
           </p>
 
           <a

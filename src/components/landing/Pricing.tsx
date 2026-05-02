@@ -18,11 +18,18 @@ export const Pricing = () => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto items-stretch">
         <PriceCard
           label={t("price.monthly")}
           amount={t("price.monthly.amount")}
           unit={t("price.monthly.unit")}
+          features={features.map((k) => t(k))}
+        />
+        <PriceCard
+          badge={t("price.halfyear.badge")}
+          label={t("price.halfyear")}
+          amount={t("price.halfyear.amount")}
+          unit={t("price.halfyear.unit")}
           features={features.map((k) => t(k))}
         />
         <PriceCard

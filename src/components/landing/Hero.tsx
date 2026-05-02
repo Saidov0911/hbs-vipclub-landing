@@ -189,19 +189,29 @@ const ScrollGallery = () => {
       >
         <div className="flex gap-3 md:gap-4 p-3 md:p-4 h-full">
           {GALLERY.map((src, i) => (
-            <div
+            <button
+              type="button"
               key={i}
-              className="shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30 shadow-card"
+              onClick={(e) => {
+                const el = scrollRef.current;
+                const target = e.currentTarget;
+                if (!el || !target) return;
+                const left = target.offsetLeft - (el.clientWidth - target.clientWidth) / 2;
+                el.scrollTo({ left, behavior: "smooth" });
+                setPaused(true);
+              }}
+              className="shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30 shadow-card cursor-pointer transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/60"
+              aria-label={`Show screenshot ${i + 1}`}
             >
               <img
                 src={src}
                 alt={`HBS VIP Club Telegram ${i + 1}`}
-                className="h-full w-auto block object-contain"
+                className="h-full w-auto block object-contain pointer-events-none"
                 loading={i < 2 ? "eager" : "lazy"}
                 decoding="async"
                 draggable={false}
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>

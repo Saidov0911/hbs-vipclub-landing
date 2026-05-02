@@ -19,7 +19,26 @@ import fb14 from "@/assets/feedback/fb-14.png";
 import fb15 from "@/assets/feedback/fb-15.png";
 import fb16 from "@/assets/feedback/fb-16.png";
 
-const IMAGES = [fb1, fb2, fb3, fb4, fb5, fb6, fb7, fb8, fb9, fb10, fb11, fb12, fb13, fb14, fb15, fb16];
+type FeedbackItem = { src: string; label: string };
+
+const ITEMS: FeedbackItem[] = [
+  { src: fb1, label: "Signal natijalari" },
+  { src: fb2, label: "Real savdo misollari" },
+  { src: fb3, label: "Feedbacklar" },
+  { src: fb4, label: "Guruh ichidagi tahlillar" },
+  { src: fb5, label: "Signal natijalari" },
+  { src: fb6, label: "Real savdo misollari" },
+  { src: fb7, label: "Feedbacklar" },
+  { src: fb8, label: "Guruh ichidagi tahlillar" },
+  { src: fb9, label: "Real savdo misollari" },
+  { src: fb10, label: "Signal natijalari" },
+  { src: fb11, label: "Real savdo misollari" },
+  { src: fb12, label: "Signal natijalari" },
+  { src: fb13, label: "Guruh ichidagi tahlillar" },
+  { src: fb14, label: "Feedbacklar" },
+  { src: fb15, label: "Guruh ichidagi tahlillar" },
+  { src: fb16, label: "Feedbacklar" },
+];
 
 export const Results = () => {
   const { t } = useI18n();
@@ -31,18 +50,32 @@ export const Results = () => {
           <div className="pointer-events-none absolute -inset-x-10 -top-10 -bottom-10 -z-10 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_70%)] blur-3xl" />
 
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [column-fill:_balance]">
-            {IMAGES.map((src, i) => (
+            {ITEMS.map((item, i) => (
               <div
                 key={i}
-                className="mb-4 break-inside-avoid rounded-xl overflow-hidden border border-border/60 bg-card/40 shadow-md hover:border-primary/40 hover:shadow-elegant transition-all duration-300"
+                className="group relative mb-4 break-inside-avoid rounded-xl overflow-hidden border border-border/60 bg-card/40 shadow-md hover:border-primary/40 hover:shadow-elegant transition-all duration-300"
               >
                 <img
-                  src={src}
-                  alt={`HBS VIP Club a'zo fikri ${i + 1}`}
-                  className="w-full h-auto block"
+                  src={item.src}
+                  alt={`HBS VIP Club — ${item.label} ${i + 1}`}
+                  className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                   decoding="async"
                 />
+                {/* Gradient + label overlay */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 px-3 py-1 text-[11px] md:text-xs font-semibold text-foreground">
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                    {item.label}
+                  </span>
+                </div>
+                {/* Always-visible compact badge top-left */}
+                <div className="absolute top-2.5 left-2.5">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-background/70 backdrop-blur-md border border-primary/30 px-2.5 py-1 text-[10px] md:text-[11px] font-medium text-foreground shadow-sm">
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                    {item.label}
+                  </span>
+                </div>
               </div>
             ))}
           </div>

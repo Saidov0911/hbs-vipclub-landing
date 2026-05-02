@@ -1,14 +1,39 @@
 import { ArrowRight, Sparkles, Send, Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
 import telegramPreview from "@/assets/telegram-preview.png";
 
 export const Hero = () => {
   const { t } = useI18n();
+  const mockupRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        if (!mockupRef.current) return;
+        const rect = mockupRef.current.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // progress: 0 when mockup top is at viewport bottom, 1 when at top
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+        setOffset(progress * -120);
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
 
   return (
     <section id="top" className="relative pt-28 md:pt-36 pb-0 overflow-hidden">
@@ -71,8 +96,12 @@ export const Hero = () => {
 
         </div>
 
-        {/* Laptop mockup rising from bottom */}
-        <div className="relative mt-14 md:mt-20 animate-slide-up">
+        {/* Laptop mockup rising from bottom — parallax on scroll */}
+        <div
+          ref={mockupRef}
+          className="relative mt-14 md:mt-20 animate-slide-up will-change-transform"
+          style={{ transform: `translate3d(0, ${offset}px, 0)`, transition: "transform 0.1s linear" }}
+        >
           <div className="absolute -inset-x-10 -top-10 bottom-0 -z-10 bg-gradient-to-t from-primary/12 via-primary/5 to-transparent blur-3xl" />
 
           <div className="relative -mb-32 sm:-mb-44 md:-mb-56">

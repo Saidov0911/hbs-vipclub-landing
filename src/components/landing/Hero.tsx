@@ -164,13 +164,27 @@ const ScrollGallery = () => {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Track scroll progress
+  // Track scroll progress + active index (item closest to viewport center)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     const onScroll = () => {
       const max = el.scrollWidth - el.clientWidth;
       setProgress(max > 0 ? (el.scrollLeft / max) * 100 : 0);
+
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      itemRefs.current.forEach((node, i) => {
+        if (!node) return;
+        const itemCenter = node.offsetLeft + node.clientWidth / 2;
+        const d = Math.abs(itemCenter - center);
+        if (d < bestDist) {
+          bestDist = d;
+          bestIdx = i;
+        }
+      });
+      setActiveIndex(bestIdx);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     onScroll();

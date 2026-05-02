@@ -6,12 +6,14 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import mentorMamur from "@/assets/mentor-mamur.png";
 import mentorAbdulloh from "@/assets/mentor-abdulloh.png";
+import mentorEldorbek from "@/assets/mentor-eldorbek.png";
 
 const mentors: { key: string; photo?: string }[] = [
   { key: "mentor.1", photo: mentorMamur },
   { key: "mentor.2", photo: mentorAbdulloh },
   { key: "mentor.3" },
   { key: "mentor.4" },
+  { key: "mentor.5", photo: mentorEldorbek },
 ];
 
 export const Mentors = () => {

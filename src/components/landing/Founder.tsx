@@ -7,6 +7,7 @@ import founderPhoto from "@/assets/founder-mushlihiddin.png";
 import brandElmakon from "@/assets/brand-elmakon.png";
 import brandBmElectronics from "@/assets/brand-bm-electronics.png";
 import brandHbs from "@/assets/brand-hbs.png";
+import brandSaraf from "@/assets/brand-saraf.png";
 
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
@@ -19,6 +20,7 @@ const COMPANIES: { name: string; src: string }[] = [
   { name: "Elmakon", src: brandElmakon },
   { name: "BM Electronics", src: brandBmElectronics },
   { name: "HBS VIP Club", src: brandHbs },
+  { name: "Saraf", src: brandSaraf },
 ];
 
 export const Founder = () => {

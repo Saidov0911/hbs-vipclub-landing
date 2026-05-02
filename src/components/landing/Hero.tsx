@@ -30,8 +30,10 @@ export const Hero = () => {
     };
   }, []);
 
+  const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
 
   return (
     <section id="top" className="relative pt-28 md:pt-36 pb-0 overflow-hidden">

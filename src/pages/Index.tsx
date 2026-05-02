@@ -9,7 +9,6 @@ import { Requirements } from "@/components/landing/Requirements";
 import { HowToJoin } from "@/components/landing/HowToJoin";
 import { Pricing } from "@/components/landing/Pricing";
 import { Mentors } from "@/components/landing/Mentors";
-import { Values } from "@/components/landing/Values";
 import { Founder } from "@/components/landing/Founder";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
@@ -30,7 +29,6 @@ const Index = () => {
           <HowToJoin />
           <Pricing />
           <Mentors />
-          <Values />
           <Founder />
           <FAQ />
           <FinalCTA />

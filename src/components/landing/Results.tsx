@@ -19,7 +19,7 @@ import fb14 from "@/assets/feedback/fb-14.png";
 import fb15 from "@/assets/feedback/fb-15.png";
 import fb16 from "@/assets/feedback/fb-16.png";
 
-type FeedbackItem = { src: string; label: string };
+type FeedbackItem = { src: string; label: string; small?: boolean };
 
 const ITEMS: FeedbackItem[] = [
   { src: fb1, label: "Signal natijalari" },
@@ -35,16 +35,43 @@ const ITEMS: FeedbackItem[] = [
   { src: fb11, label: "Real savdo misollari" },
   { src: fb12, label: "Signal natijalari" },
   { src: fb13, label: "Guruh ichidagi tahlillar" },
-  { src: fb14, label: "Feedbacklar" },
-  { src: fb15, label: "Guruh ichidagi tahlillar" },
-  { src: fb16, label: "Feedbacklar" },
+  { src: fb14, label: "Feedbacklar", small: true },
+  { src: fb15, label: "Guruh ichidagi tahlillar", small: true },
+  { src: fb16, label: "Feedbacklar", small: true },
 ];
 
-// Split into 3 rows
-const ROWS: FeedbackItem[][] = [
-  ITEMS.filter((_, i) => i % 3 === 0),
-  ITEMS.filter((_, i) => i % 3 === 1),
-  ITEMS.filter((_, i) => i % 3 === 2),
+// Tile = either one normal item, or two stacked small items
+type Tile =
+  | { kind: "single"; item: FeedbackItem }
+  | { kind: "stack"; items: [FeedbackItem, FeedbackItem] };
+
+const buildTiles = (items: FeedbackItem[]): Tile[] => {
+  const tiles: Tile[] = [];
+  const queue = [...items];
+  let pendingSmall: FeedbackItem | null = null;
+
+  for (const item of queue) {
+    if (item.small) {
+      if (pendingSmall) {
+        tiles.push({ kind: "stack", items: [pendingSmall, item] });
+        pendingSmall = null;
+      } else {
+        pendingSmall = item;
+      }
+    } else {
+      tiles.push({ kind: "single", item });
+    }
+  }
+  if (pendingSmall) tiles.push({ kind: "single", item: pendingSmall });
+  return tiles;
+};
+
+const ALL_TILES = buildTiles(ITEMS);
+
+// Split into 2 rows
+const ROWS: Tile[][] = [
+  ALL_TILES.filter((_, i) => i % 2 === 0),
+  ALL_TILES.filter((_, i) => i % 2 === 1),
 ];
 
 export const Results = () => {

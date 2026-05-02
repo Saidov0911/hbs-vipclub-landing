@@ -146,6 +146,19 @@ const uz: Dict = {
   "mentor.5.name": "Eldorbek Sotvoldiev",
   "mentor.5.role": "Kripto treyder",
 
+  // Values
+  "values.eyebrow": "Qadriyatlar",
+  "values.title": "HBS VIP Club’da qadriyatlar birinchi o‘rinda",
+  "values.subtitle": "Biz uchun halollik, bilim va hamjamiyat — eng muhim ustunlar.",
+  "values.1.title": "Joiz va nojoiz kriptolar tekshirish imkoniyati",
+  "values.1.desc": "Har bir loyiha shariat va xavfsizlik nuqtai nazaridan tahlil qilinadi — siz halol va ishonchli aktivlarga sarmoya kiritasiz.",
+  "values.2.title": "Hamjamiyat va o‘zaro yordam",
+  "values.2.desc": "Tajribali treyderlar va boshlovchilar bir-biriga yordam beradi. Yolg‘iz qolmaysiz, savolingizga javob topasiz.",
+  "values.3.title": "Tizimli ta’lim va rivojlanish",
+  "values.3.desc": "Boshlang‘ichdan ilg‘or darajagacha bosqichma-bosqich darslar — bilim asosida qaror qabul qilasiz.",
+  "values.4.title": "Halol va shaffof yondashuv",
+  "values.4.desc": "Hech qanday yashirin to‘lov yoki aldov yo‘q — natijalar, signallar va fikrlar ochiq ko‘rsatiladi.",
+
   // Founder
   "founder.title": "HBS VIP Club asoschisi",
   "founder.name": "Mushlihiddin Hayitbaev",

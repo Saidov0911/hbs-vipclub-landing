@@ -128,6 +128,13 @@ const ScrollGallery = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
+  const pausedRef = useRef(false);
+  const smoothUntilRef = useRef(0);
+
+  // keep ref in sync with state
+  useEffect(() => {
+    pausedRef.current = paused;
+  }, [paused]);
 
   // Auto-scroll loop (horizontal)
   useEffect(() => {
@@ -140,7 +147,8 @@ const ScrollGallery = () => {
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
-      if (!paused) {
+      // Don't fight programmatic smooth scroll
+      if (!pausedRef.current && now > smoothUntilRef.current) {
         const max = el.scrollWidth - el.clientWidth;
         if (max > 0) {
           let next = el.scrollLeft + SPEED * dt;
@@ -152,7 +160,7 @@ const ScrollGallery = () => {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [paused]);
+  }, []);
 
   // Track scroll progress
   useEffect(() => {
@@ -167,11 +175,29 @@ const ScrollGallery = () => {
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
+  const smoothScrollTo = (left: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    const target = Math.max(0, Math.min(max, left));
+    pausedRef.current = true;
+    smoothUntilRef.current = performance.now() + 800; // block auto-scroll during animation
+    setPaused(true);
+    el.scrollTo({ left: target, behavior: "smooth" });
+  };
+
   const scrollByDir = (dir: 1 | -1) => {
     const el = scrollRef.current;
     if (!el) return;
     const step = el.clientWidth * 0.7;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
+    smoothScrollTo(el.scrollLeft + dir * step);
+  };
+
+  const centerItem = (target: HTMLElement) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const left = target.offsetLeft - (el.clientWidth - target.clientWidth) / 2;
+    smoothScrollTo(left);
   };
 
   return (
@@ -192,14 +218,7 @@ const ScrollGallery = () => {
             <button
               type="button"
               key={i}
-              onClick={(e) => {
-                const el = scrollRef.current;
-                const target = e.currentTarget;
-                if (!el || !target) return;
-                const left = target.offsetLeft - (el.clientWidth - target.clientWidth) / 2;
-                el.scrollTo({ left, behavior: "smooth" });
-                setPaused(true);
-              }}
+              onClick={(e) => centerItem(e.currentTarget)}
               className="shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30 shadow-card cursor-pointer transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/60"
               aria-label={`Show screenshot ${i + 1}`}
             >

@@ -6,19 +6,21 @@ import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import mentorMamur from "@/assets/mentor-mamur.png";
 import mentorAbdulloh from "@/assets/mentor-abdulloh.png";
+import mentorEldorbek from "@/assets/mentor-eldorbek.png";
 
 const mentors: { key: string; photo?: string }[] = [
   { key: "mentor.1", photo: mentorMamur },
   { key: "mentor.2", photo: mentorAbdulloh },
   { key: "mentor.3" },
   { key: "mentor.4" },
+  { key: "mentor.5", photo: mentorEldorbek },
 ];
 
 export const Mentors = () => {
   const { t } = useI18n();
   return (
     <Section id="mentors" eyebrow="Jamoa" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-5">
         {mentors.map((m, i) => (
           <Card
             key={m.key}

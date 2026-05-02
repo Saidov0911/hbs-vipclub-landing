@@ -143,6 +143,8 @@ const uz: Dict = {
   "mentor.3.role": "Aksiyalar bo‘yicha treyder",
   "mentor.4.name": "Mushlihiddin Hayitbaev",
   "mentor.4.role": "CEO and Founder",
+  "mentor.5.name": "Eldorbek Sotvoldiev",
+  "mentor.5.role": "Kripto treyder",
 
   // Founder
   "founder.title": "HBS VIP Club asoschisi",

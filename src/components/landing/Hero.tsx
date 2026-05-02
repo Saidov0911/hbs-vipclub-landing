@@ -96,8 +96,12 @@ export const Hero = () => {
 
         </div>
 
-        {/* Laptop mockup rising from bottom */}
-        <div className="relative mt-14 md:mt-20 animate-slide-up">
+        {/* Laptop mockup rising from bottom — parallax on scroll */}
+        <div
+          ref={mockupRef}
+          className="relative mt-14 md:mt-20 animate-slide-up will-change-transform"
+          style={{ transform: `translate3d(0, ${offset}px, 0)`, transition: "transform 0.1s linear" }}
+        >
           <div className="absolute -inset-x-10 -top-10 bottom-0 -z-10 bg-gradient-to-t from-primary/12 via-primary/5 to-transparent blur-3xl" />
 
           <div className="relative -mb-32 sm:-mb-44 md:-mb-56">

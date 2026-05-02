@@ -282,12 +282,40 @@ const ScrollGallery = () => {
         <ChevronRight className="h-5 w-5" />
       </button>
 
-      {/* Gradient scroll progress bar (bottom edge) */}
-      <div className="pointer-events-none absolute left-3 right-3 bottom-1.5 h-1 rounded-full bg-foreground/5 overflow-hidden">
+      {/* Gradient scroll progress bar (bottom edge) with active marker */}
+      <div className="pointer-events-none absolute left-3 right-3 bottom-3 h-1 rounded-full bg-foreground/5 overflow-visible">
         <div
           className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-gold via-primary to-primary-glow shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-[width] duration-150 ease-linear"
-          style={{ width: `${Math.max(8, progress)}%` }}
+          style={{ width: `${Math.max(2, progress)}%` }}
         />
+        <div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.9)] ring-2 ring-background transition-[left] duration-150 ease-linear"
+          style={{ left: `${progress}%` }}
+        />
+      </div>
+
+      {/* Dot indicators (one per screenshot) */}
+      <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 bottom-6 z-10 flex items-center gap-1.5">
+        {GALLERY.map((_, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to screenshot ${i + 1}`}
+              aria-current={isActive ? "true" : undefined}
+              onClick={() => {
+                const node = itemRefs.current[i];
+                if (node) centerItem(node);
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                isActive
+                  ? "w-6 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
+                  : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
+              }`}
+            />
+          );
+        })}
       </div>
     </div>
   );

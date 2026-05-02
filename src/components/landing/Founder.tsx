@@ -126,7 +126,7 @@ export const Founder = () => {
                 </span>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {COMPANIES.map((c, i) => (
                   <div
                     key={c.name}

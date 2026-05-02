@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { Section } from "./Section";
 import { LaptopMockup, PhoneMockup } from "./Mockups";
-import { FeedbackScreen } from "./Screens";
+
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import {
@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/carousel";
 import {
   CheckCircle2,
-  MessageSquare,
   TrendingUp,
   ShieldCheck,
   GraduationCap,
@@ -86,14 +85,6 @@ export const Results = () => {
         />
       ),
       caption: "Telegramda jonli signallar va natijalar",
-    },
-    {
-      id: "feedback",
-      labelKey: "results.label.3",
-      icon: MessageSquare,
-      device: "laptop",
-      render: () => <FeedbackScreen />,
-      caption: "A’zolarning haqiqiy fikrlari va natijalari",
     },
   ];
 

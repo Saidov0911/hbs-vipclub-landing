@@ -1,4 +1,5 @@
 import { ArrowRight, Sparkles, Send, Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
 import telegramPreview from "@/assets/telegram-preview.png";

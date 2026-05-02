@@ -19,7 +19,7 @@ type Step = {
 };
 
 const steps: Step[] = [
-  { n: "01", key: "join.1", img: step2Img, imgSide: "right", duration: "10 son.", badge: "Telegram" },
+  { n: "01", key: "join.1", img: step2Img, imgSide: "right", duration: "\n", badge: "\n" },
   { n: "02", key: "join.2", img: step1Img, imgSide: "left", duration: "30 son.", badge: "Tezkor" },
   { n: "03", key: "join.3", img: step3Img, imgSide: "right", duration: "1 daq.", badge: "Xavfsiz to‘lov" },
   { n: "04", key: "join.4", img: step4Img, imgSide: "left", duration: "Darhol", badge: "Avtomatik" },

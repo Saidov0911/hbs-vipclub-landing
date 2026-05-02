@@ -103,16 +103,18 @@ const uz: Dict = {
 
   // How to join
   "join.title": "VIP Clubga qanday qo‘shilish mumkin?",
-  "join.subtitle": "VIP Clubga Telegram bot orqali a’zo bo‘lish mumkin.",
-  "join.1.title": "Ro‘yxatdan o‘ting",
-  "join.1.desc": "Telegram bot orqali tezkor ro‘yxatdan o‘tasiz.",
-  "join.2.title": "Telegram botga kiring",
-  "join.2.desc": "Bot sizni qadam-baqadam yo‘naltiradi.",
-  "join.3.title": "To‘lovni amalga oshiring",
-  "join.3.desc": "Qulay usul orqali oylik yoki yillik obunani tanlaysiz.",
-  "join.4.title": "HBS VIP Club yopiq guruhiga qo‘shiling",
-  "join.4.desc": "Ichkariga kirib, hamjamiyat bilan birga rivojlanasiz.",
+  "join.subtitle": "Hammasi Telegram bot orqali — 4 ta sodda qadamda, 2 daqiqada.",
+  "join.1.title": "Telegram botni oching",
+  "join.1.desc": "Quyidagi tugma orqali rasmiy HBS VIP Club botiga o‘ting va “Start” tugmasini bosing.",
+  "join.2.title": "Qisqa ro‘yxatdan o‘ting",
+  "join.2.desc": "Ism va telefon raqamingizni kiriting — bot sizni qadam-baqadam yo‘naltiradi.",
+  "join.3.title": "Tarifni tanlab, to‘lovni amalga oshiring",
+  "join.3.desc": "Oylik, 6 oylik yoki yillik obunani tanlang va xavfsiz to‘lovni botning o‘zida bajaring.",
+  "join.4.title": "Yopiq VIP guruhga avtomatik qo‘shilasiz",
+  "join.4.desc": "To‘lov tasdiqlangach, bot sizga shaxsiy taklif havolasini yuboradi va siz darhol klub ichida bo‘lasiz.",
   "join.cta": "Botga o‘tish",
+  "join.final.title": "Tayyor — bir bosishda ichkarida",
+  "join.final.desc": "Botni oching, tarifni tanlang va HBS VIP Club hamjamiyatining bir qismi bo‘ling.",
 
   // Pricing
   "price.title": "Obuna narxlari",

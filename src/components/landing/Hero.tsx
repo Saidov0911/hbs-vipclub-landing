@@ -69,94 +69,11 @@ export const Hero = () => {
             </button>
           </div>
 
-          {/* Member proof + trial */}
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="h-8 w-8 rounded-full border-2 border-background ring-1 ring-primary/20"
-                    style={{
-                      background: `linear-gradient(140deg, hsl(${(i * 50 + 30) % 360} 50% 35%), hsl(${(i * 50 + 70) % 360} 50% 22%))`,
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="text-left text-xs">
-                <div className="font-semibold text-foreground">1 248+ treyder</div>
-                <div className="text-muted-foreground">allaqachon ichida</div>
-              </div>
-            </div>
-
-            <div className="hidden sm:block h-6 w-px bg-border" />
-
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-full px-3.5 py-1.5 bg-primary/10 text-primary-glow border border-primary/30">
-              <TrendingUp className="h-3.5 w-3.5" />
-              {t("hero.trial")}
-            </span>
-          </div>
-
-          {/* Stats row */}
-          <div className="mt-10 grid grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto">
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="glass rounded-2xl px-3 py-4 sm:px-5 sm:py-5"
-              >
-                <div className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-gold leading-none">
-                  {s.value}
-                </div>
-                <div className="mt-1.5 text-[11px] sm:text-xs text-muted-foreground leading-tight">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Trust chips */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {["hero.trust.1", "hero.trust.2", "hero.trust.3", "hero.trust.4"].map((k) => (
-              <span
-                key={k}
-                className="text-[11px] sm:text-xs text-muted-foreground glass rounded-full px-3 py-1.5"
-              >
-                {t(k)}
-              </span>
-            ))}
-          </div>
         </div>
 
         {/* Laptop mockup rising from bottom */}
         <div className="relative mt-14 md:mt-20 animate-slide-up">
           <div className="absolute -inset-x-10 -top-10 bottom-0 -z-10 bg-gradient-to-t from-primary/12 via-primary/5 to-transparent blur-3xl" />
-
-          {/* Floating accent badges (desktop only) */}
-          <div className="hidden md:block absolute left-[6%] top-12 z-10 glass-strong rounded-2xl px-4 py-3 animate-float shadow-card">
-            <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/40 flex items-center justify-center">
-                <TrendingUp className="h-4 w-4 text-gold" />
-              </div>
-              <div>
-                <div className="text-[11px] text-muted-foreground">BTC LONG</div>
-                <div className="font-display font-bold text-sm text-foreground">+8.2%</div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="hidden md:block absolute right-[6%] top-24 z-10 glass-strong rounded-2xl px-4 py-3 animate-float shadow-card"
-            style={{ animationDelay: "1s" }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/40 flex items-center justify-center">
-                <Send className="h-4 w-4 text-gold" />
-              </div>
-              <div>
-                <div className="text-[11px] text-muted-foreground">Yangi xabar</div>
-                <div className="font-display font-bold text-sm text-foreground">Mentor · live</div>
-              </div>
-            </div>
-          </div>
 
           <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
             <LaptopMockup className="px-2">

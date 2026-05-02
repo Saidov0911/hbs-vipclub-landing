@@ -1,21 +1,15 @@
-import { ArrowRight, Sparkles, Send, Play } from "lucide-react";
+import { ArrowRight, Sparkles, Send, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
-import fb1 from "@/assets/feedback/fb-1.png";
-import fb2 from "@/assets/feedback/fb-2.png";
-import fb3 from "@/assets/feedback/fb-3.png";
-import fb4 from "@/assets/feedback/fb-4.png";
-import fb5 from "@/assets/feedback/fb-5.png";
-import fb6 from "@/assets/feedback/fb-6.png";
-import fb7 from "@/assets/feedback/fb-7.png";
-import fb8 from "@/assets/feedback/fb-8.png";
-import fb9 from "@/assets/feedback/fb-9.png";
-import fb10 from "@/assets/feedback/fb-10.png";
-import fb11 from "@/assets/feedback/fb-11.png";
-import fb12 from "@/assets/feedback/fb-12.png";
+import tg1 from "@/assets/telegram/tg-1.png";
+import tg2 from "@/assets/telegram/tg-2.png";
+import tg3 from "@/assets/telegram/tg-3.png";
+import tg4 from "@/assets/telegram/tg-4.png";
+import tg5 from "@/assets/telegram/tg-5.png";
+import tg6 from "@/assets/telegram/tg-6.png";
 
-const GALLERY = [fb1, fb2, fb3, fb4, fb5, fb6, fb7, fb8, fb9, fb10, fb11, fb12];
+const GALLERY = [tg1, tg2, tg3, tg4, tg5, tg6];
 
 export const Hero = () => {
   const { t } = useI18n();
@@ -129,29 +123,29 @@ export const Hero = () => {
   );
 };
 
-/** Smooth auto-scrolling feedback gallery with gradient scroll progress bar. */
+/** Horizontal Telegram screenshot carousel — auto-scrolls and supports left/right arrow clicks. */
 const ScrollGallery = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Auto-scroll loop
+  // Auto-scroll loop (horizontal)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     let raf = 0;
     let last = performance.now();
-    const SPEED = 28; // px per second
+    const SPEED = 40; // px per second
 
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
       if (!paused) {
-        const max = el.scrollHeight - el.clientHeight;
+        const max = el.scrollWidth - el.clientWidth;
         if (max > 0) {
-          let next = el.scrollTop + SPEED * dt;
+          let next = el.scrollLeft + SPEED * dt;
           if (next >= max) next = 0; // loop
-          el.scrollTop = next;
+          el.scrollLeft = next;
         }
       }
       raf = requestAnimationFrame(tick);
@@ -165,13 +159,20 @@ const ScrollGallery = () => {
     const el = scrollRef.current;
     if (!el) return;
     const onScroll = () => {
-      const max = el.scrollHeight - el.clientHeight;
-      setProgress(max > 0 ? (el.scrollTop / max) * 100 : 0);
+      const max = el.scrollWidth - el.clientWidth;
+      setProgress(max > 0 ? (el.scrollLeft / max) * 100 : 0);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
+
+  const scrollByDir = (dir: 1 | -1) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const step = el.clientWidth * 0.7;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
 
   return (
     <div
@@ -181,39 +182,57 @@ const ScrollGallery = () => {
       onTouchStart={() => setPaused(true)}
       onTouchEnd={() => setPaused(false)}
     >
-      {/* Scrollable content */}
+      {/* Scrollable horizontal track */}
       <div
         ref={scrollRef}
-        className="h-full w-full overflow-y-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="h-full w-full overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div className="columns-2 md:columns-3 gap-2 md:gap-3 p-2 md:p-3 [column-fill:_balance]">
+        <div className="flex gap-3 md:gap-4 p-3 md:p-4 h-full">
           {GALLERY.map((src, i) => (
             <div
               key={i}
-              className="mb-2 md:mb-3 break-inside-avoid rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30"
+              className="shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30 shadow-card"
             >
               <img
                 src={src}
-                alt={`HBS VIP Club feedback ${i + 1}`}
-                className="w-full h-auto block"
-                loading={i < 4 ? "eager" : "lazy"}
+                alt={`HBS VIP Club Telegram ${i + 1}`}
+                className="h-full w-auto block object-contain"
+                loading={i < 2 ? "eager" : "lazy"}
                 decoding="async"
+                draggable={false}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Top fade */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[hsl(222_55%_5%)] to-transparent" />
-      {/* Bottom fade */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[hsl(222_55%_5%)] to-transparent" />
+      {/* Side fades */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[hsl(222_55%_5%)] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[hsl(222_55%_5%)] to-transparent" />
 
-      {/* Gradient scroll progress bar (right edge) */}
-      <div className="pointer-events-none absolute right-1.5 top-3 bottom-3 w-1 rounded-full bg-foreground/5 overflow-hidden">
+      {/* Arrow controls */}
+      <button
+        type="button"
+        aria-label="Previous"
+        onClick={() => scrollByDir(-1)}
+        className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <button
+        type="button"
+        aria-label="Next"
+        onClick={() => scrollByDir(1)}
+        className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+
+      {/* Gradient scroll progress bar (bottom edge) */}
+      <div className="pointer-events-none absolute left-3 right-3 bottom-1.5 h-1 rounded-full bg-foreground/5 overflow-hidden">
         <div
-          className="absolute inset-x-0 top-0 rounded-full bg-gradient-to-b from-gold via-primary to-primary-glow shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-[height] duration-150 ease-linear"
-          style={{ height: `${Math.max(8, progress)}%` }}
+          className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-gold via-primary to-primary-glow shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-[width] duration-150 ease-linear"
+          style={{ width: `${Math.max(8, progress)}%` }}
         />
       </div>
     </div>

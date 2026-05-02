@@ -110,6 +110,9 @@ export const Founder = () => {
                       {t(b.key)}
                     </span>
                     <Award className="absolute top-2 right-2 h-3 w-3 text-gold/40 opacity-0 group-hover/badge:opacity-100 transition-opacity" />
+                  </div>
+                );
+              })}
             </div>
 
             {/* Companies strip */}
@@ -143,9 +146,6 @@ export const Founder = () => {
                   </div>
                 ))}
               </div>
-            </div>
-                );
-              })}
             </div>
           </div>
         </div>

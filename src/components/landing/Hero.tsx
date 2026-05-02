@@ -1,21 +1,15 @@
-import { ArrowRight, Sparkles, Send, Play } from "lucide-react";
+import { ArrowRight, Sparkles, Send, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { LaptopMockup } from "./Mockups";
-import fb1 from "@/assets/feedback/fb-1.png";
-import fb2 from "@/assets/feedback/fb-2.png";
-import fb3 from "@/assets/feedback/fb-3.png";
-import fb4 from "@/assets/feedback/fb-4.png";
-import fb5 from "@/assets/feedback/fb-5.png";
-import fb6 from "@/assets/feedback/fb-6.png";
-import fb7 from "@/assets/feedback/fb-7.png";
-import fb8 from "@/assets/feedback/fb-8.png";
-import fb9 from "@/assets/feedback/fb-9.png";
-import fb10 from "@/assets/feedback/fb-10.png";
-import fb11 from "@/assets/feedback/fb-11.png";
-import fb12 from "@/assets/feedback/fb-12.png";
+import tg1 from "@/assets/telegram/tg-1.png";
+import tg2 from "@/assets/telegram/tg-2.png";
+import tg3 from "@/assets/telegram/tg-3.png";
+import tg4 from "@/assets/telegram/tg-4.png";
+import tg5 from "@/assets/telegram/tg-5.png";
+import tg6 from "@/assets/telegram/tg-6.png";
 
-const GALLERY = [fb1, fb2, fb3, fb4, fb5, fb6, fb7, fb8, fb9, fb10, fb11, fb12];
+const GALLERY = [tg1, tg2, tg3, tg4, tg5, tg6];
 
 export const Hero = () => {
   const { t } = useI18n();

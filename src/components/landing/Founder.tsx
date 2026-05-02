@@ -1,9 +1,9 @@
 import { Award } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { Section } from "./Section";
-import { PlaceholderAvatar } from "./Placeholders";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
+import founderPhoto from "@/assets/founder-mushlihiddin.png";
 
 const badges = ["founder.badge.1", "founder.badge.2", "founder.badge.3", "founder.badge.4"];
 
@@ -26,7 +26,14 @@ export const Founder = () => {
         <div className="relative grid md:grid-cols-[auto_1fr] gap-8 md:gap-10 items-center">
           <div className="relative mx-auto md:mx-0">
             <div className="absolute inset-0 rounded-full bg-gradient-gold blur-2xl opacity-40 animate-glow-pulse" />
-            <PlaceholderAvatar name={t("founder.name")} size={200} ring />
+            <div className="relative h-[200px] w-[200px] rounded-full overflow-hidden ring-2 ring-primary/50 ring-offset-4 ring-offset-background bg-gradient-to-b from-secondary/60 to-background shadow-gold">
+              <img
+                src={founderPhoto}
+                alt={t("founder.name")}
+                className="absolute inset-0 h-full w-full object-cover object-top"
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-foreground/10" />
+            </div>
           </div>
 
           <div>

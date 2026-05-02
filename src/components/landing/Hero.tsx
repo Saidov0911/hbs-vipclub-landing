@@ -6,8 +6,30 @@ import telegramPreview from "@/assets/telegram-preview.png";
 
 export const Hero = () => {
   const { t } = useI18n();
+  const mockupRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
 
-  const scrollTo = (id: string) => {
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        if (!mockupRef.current) return;
+        const rect = mockupRef.current.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // progress: 0 when mockup top is at viewport bottom, 1 when at top
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+        setOffset(progress * -120);
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 

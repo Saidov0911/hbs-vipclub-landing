@@ -230,24 +230,33 @@ const ScrollGallery = () => {
         className="h-full w-full overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <div className="flex gap-3 md:gap-4 p-3 md:p-4 h-full">
-          {GALLERY.map((src, i) => (
-            <button
-              type="button"
-              key={i}
-              onClick={(e) => centerItem(e.currentTarget)}
-              className="shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border border-border/50 bg-card/30 shadow-card cursor-pointer transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/60"
-              aria-label={`Show screenshot ${i + 1}`}
-            >
-              <img
-                src={src}
-                alt={`HBS VIP Club Telegram ${i + 1}`}
-                className="h-full w-auto block object-contain pointer-events-none"
-                loading={i < 2 ? "eager" : "lazy"}
-                decoding="async"
-                draggable={false}
-              />
-            </button>
-          ))}
+          {GALLERY.map((src, i) => {
+            const isActive = i === activeIndex;
+            return (
+              <button
+                type="button"
+                key={i}
+                ref={(node) => (itemRefs.current[i] = node)}
+                onClick={(e) => centerItem(e.currentTarget)}
+                className={`shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border bg-card/30 shadow-card cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/60 ${
+                  isActive
+                    ? "border-primary/70 ring-2 ring-primary/50 shadow-[0_0_24px_hsl(var(--primary)/0.35)] scale-[1.02]"
+                    : "border-border/50 opacity-70 hover:opacity-100 hover:scale-[1.02]"
+                }`}
+                aria-label={`Show screenshot ${i + 1}`}
+                aria-current={isActive ? "true" : undefined}
+              >
+                <img
+                  src={src}
+                  alt={`HBS VIP Club Telegram ${i + 1}`}
+                  className="h-full w-auto block object-contain pointer-events-none"
+                  loading={i < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                  draggable={false}
+                />
+              </button>
+            );
+          })}
         </div>
       </div>
 

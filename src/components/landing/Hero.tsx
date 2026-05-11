@@ -111,12 +111,8 @@ export const Hero = () => {
         >
           <div className="absolute -inset-x-10 -top-10 bottom-0 -z-10 bg-gradient-to-t from-primary/12 via-primary/5 to-transparent blur-3xl" />
 
-          <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
-            <LaptopMockup className="px-2">
-              <ScrollGallery />
-            </LaptopMockup>
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
-          </div>
+          <HeroGallery />
+        </div>
         </div>
       </div>
     </section>

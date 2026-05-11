@@ -118,8 +118,8 @@ export const Hero = () => {
   );
 };
 
-/** Single-image Telegram screenshot slider — full mockup size, auto-advances every 3s with a smooth slide. */
-const ScrollGallery = () => {
+/** Hero gallery wrapper — laptop mockup + small dot indicators below the screen. */
+const HeroGallery = () => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -136,56 +136,62 @@ const ScrollGallery = () => {
   };
 
   return (
-    <div
-      className="relative h-full w-full overflow-hidden bg-[hsl(222_55%_5%)]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onTouchStart={() => setPaused(true)}
-      onTouchEnd={() => setPaused(false)}
-    >
-      {/* Sliding track — one big image at a time, whole track moves */}
-      <div
-        className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
-        style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
-      >
-        {GALLERY.map((src, i) => (
-          <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
-            <img
-              src={src}
-              alt={`HBS VIP Club Telegram ${i + 1}`}
-              className="h-full w-auto max-w-full object-contain block"
-              loading={i < 2 ? "eager" : "lazy"}
-              decoding="async"
-              draggable={false}
-            />
+    <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
+      <LaptopMockup className="px-2">
+        <div
+          className="relative h-full w-full overflow-hidden bg-[hsl(222_55%_5%)]"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          {/* Sliding track — one big image at a time, whole track moves */}
+          <div
+            className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+            style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+          >
+            {GALLERY.map((src, i) => (
+              <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
+                <img
+                  src={src}
+                  alt={`HBS VIP Club Telegram ${i + 1}`}
+                  className="h-full w-auto max-w-full object-contain block"
+                  loading={i < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                  draggable={false}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Side fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[hsl(222_55%_5%)] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[hsl(222_55%_5%)] to-transparent" />
+          {/* Side fades */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[hsl(222_55%_5%)] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[hsl(222_55%_5%)] to-transparent" />
 
-      {/* Arrows */}
-      <button
-        type="button"
-        aria-label="Previous"
-        onClick={() => go(-1)}
-        className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-      <button
-        type="button"
-        aria-label="Next"
-        onClick={() => go(1)}
-        className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
+          {/* Arrows */}
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={() => go(-1)}
+            className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={() => go(1)}
+            className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </LaptopMockup>
 
-      {/* Dots */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-4 z-10 flex items-center gap-1.5">
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
+
+      {/* Dot indicators — below the laptop screen, small */}
+      <div className="relative z-10 mt-4 md:mt-5 flex items-center justify-center gap-1.5">
         {GALLERY.map((_, i) => {
           const isActive = i === index;
           return (
@@ -197,7 +203,7 @@ const ScrollGallery = () => {
               onClick={() => setIndex(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 isActive
-                  ? "w-6 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
+                  ? "w-5 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
                   : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
               }`}
             />

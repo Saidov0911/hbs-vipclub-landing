@@ -123,151 +123,59 @@ export const Hero = () => {
   );
 };
 
-/** Horizontal Telegram screenshot carousel — auto-scrolls and supports left/right arrow clicks. */
+/** Single-image Telegram screenshot slider — full mockup size, auto-advances every 3s with a smooth slide. */
 const ScrollGallery = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [progress, setProgress] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const pausedRef = useRef(false);
-  const smoothUntilRef = useRef(0);
 
-  // keep ref in sync with state
   useEffect(() => {
-    pausedRef.current = paused;
+    if (paused) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % GALLERY.length);
+    }, 3000);
+    return () => clearInterval(id);
   }, [paused]);
 
-  // Auto-scroll loop (horizontal)
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let raf = 0;
-    let last = performance.now();
-    const SPEED = 40; // px per second
-
-    const tick = (now: number) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      // Don't fight programmatic smooth scroll
-      if (!pausedRef.current && now > smoothUntilRef.current) {
-        const max = el.scrollWidth - el.clientWidth;
-        if (max > 0) {
-          let next = el.scrollLeft + SPEED * dt;
-          if (next >= max) next = 0; // loop
-          el.scrollLeft = next;
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  // Track scroll progress + active index (item closest to viewport center)
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const max = el.scrollWidth - el.clientWidth;
-      setProgress(max > 0 ? (el.scrollLeft / max) * 100 : 0);
-
-      const center = el.scrollLeft + el.clientWidth / 2;
-      let bestIdx = 0;
-      let bestDist = Infinity;
-      itemRefs.current.forEach((node, i) => {
-        if (!node) return;
-        const itemCenter = node.offsetLeft + node.clientWidth / 2;
-        const d = Math.abs(itemCenter - center);
-        if (d < bestDist) {
-          bestDist = d;
-          bestIdx = i;
-        }
-      });
-      setActiveIndex(bestIdx);
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const smoothScrollTo = (left: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const target = Math.max(0, Math.min(max, left));
-    // Block auto-scroll only during the smooth animation; auto-scroll resumes after.
-    smoothUntilRef.current = performance.now() + 800;
-    el.scrollTo({ left: target, behavior: "smooth" });
-  };
-
-  const scrollByDir = (dir: 1 | -1) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const step = el.clientWidth * 0.7;
-    smoothScrollTo(el.scrollLeft + dir * step);
-  };
-
-  const centerItem = (target: HTMLElement) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const left = target.offsetLeft - (el.clientWidth - target.clientWidth) / 2;
-    smoothScrollTo(left);
+  const go = (dir: 1 | -1) => {
+    setIndex((i) => (i + dir + GALLERY.length) % GALLERY.length);
   };
 
   return (
     <div
-      className="relative h-full w-full bg-[hsl(222_55%_5%)]"
+      className="relative h-full w-full overflow-hidden bg-[hsl(222_55%_5%)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={() => setPaused(true)}
       onTouchEnd={() => setPaused(false)}
     >
-      {/* Scrollable horizontal track */}
+      {/* Sliding track — one big image at a time, whole track moves */}
       <div
-        ref={scrollRef}
-        className="h-full w-full overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+        style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
       >
-        <div className="flex gap-3 md:gap-4 p-3 md:p-4 h-full">
-          {GALLERY.map((src, i) => {
-            const isActive = i === activeIndex;
-            return (
-              <button
-                type="button"
-                key={i}
-                ref={(node) => (itemRefs.current[i] = node)}
-                onClick={(e) => centerItem(e.currentTarget)}
-                className={`shrink-0 h-full rounded-md md:rounded-lg overflow-hidden border bg-card/30 shadow-card cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/60 ${
-                  isActive
-                    ? "border-primary/70 ring-2 ring-primary/50 shadow-[0_0_24px_hsl(var(--primary)/0.35)] scale-[1.02]"
-                    : "border-border/50 opacity-70 hover:opacity-100 hover:scale-[1.02]"
-                }`}
-                aria-label={`Show screenshot ${i + 1}`}
-                aria-current={isActive ? "true" : undefined}
-              >
-                <img
-                  src={src}
-                  alt={`HBS VIP Club Telegram ${i + 1}`}
-                  className="h-full w-auto block object-contain pointer-events-none"
-                  loading={i < 2 ? "eager" : "lazy"}
-                  decoding="async"
-                  draggable={false}
-                />
-              </button>
-            );
-          })}
-        </div>
+        {GALLERY.map((src, i) => (
+          <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
+            <img
+              src={src}
+              alt={`HBS VIP Club Telegram ${i + 1}`}
+              className="h-full w-auto max-w-full object-contain block"
+              loading={i < 2 ? "eager" : "lazy"}
+              decoding="async"
+              draggable={false}
+            />
+          </div>
+        ))}
       </div>
 
       {/* Side fades */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[hsl(222_55%_5%)] to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[hsl(222_55%_5%)] to-transparent" />
 
-      {/* Arrow controls */}
+      {/* Arrows */}
       <button
         type="button"
         aria-label="Previous"
-        onClick={() => scrollByDir(-1)}
+        onClick={() => go(-1)}
         className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
       >
         <ChevronLeft className="h-5 w-5" />
@@ -275,38 +183,23 @@ const ScrollGallery = () => {
       <button
         type="button"
         aria-label="Next"
-        onClick={() => scrollByDir(1)}
+        onClick={() => go(1)}
         className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 inline-flex items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:bg-primary/20 hover:border-primary/60 transition-all shadow-card"
       >
         <ChevronRight className="h-5 w-5" />
       </button>
 
-      {/* Gradient scroll progress bar (bottom edge) with active marker */}
-      <div className="pointer-events-none absolute left-3 right-3 bottom-3 h-1 rounded-full bg-foreground/5 overflow-visible">
-        <div
-          className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-gold via-primary to-primary-glow shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-[width] duration-150 ease-linear"
-          style={{ width: `${Math.max(2, progress)}%` }}
-        />
-        <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.9)] ring-2 ring-background transition-[left] duration-150 ease-linear"
-          style={{ left: `${progress}%` }}
-        />
-      </div>
-
-      {/* Dot indicators (one per screenshot) */}
-      <div className="pointer-events-auto absolute left-1/2 -translate-x-1/2 bottom-6 z-10 flex items-center gap-1.5">
+      {/* Dots */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-4 z-10 flex items-center gap-1.5">
         {GALLERY.map((_, i) => {
-          const isActive = i === activeIndex;
+          const isActive = i === index;
           return (
             <button
               key={i}
               type="button"
               aria-label={`Go to screenshot ${i + 1}`}
               aria-current={isActive ? "true" : undefined}
-              onClick={() => {
-                const node = itemRefs.current[i];
-                if (node) centerItem(node);
-              }}
+              onClick={() => setIndex(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 isActive
                   ? "w-6 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"

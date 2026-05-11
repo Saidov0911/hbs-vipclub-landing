@@ -113,7 +113,6 @@ export const Hero = () => {
 
           <HeroGallery />
         </div>
-        </div>
       </div>
     </section>
   );

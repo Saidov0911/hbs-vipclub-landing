@@ -167,16 +167,17 @@ const HeroGallery = () => {
           onTouchStart={() => setPaused(true)}
           onTouchEnd={() => setPaused(false)}
         >
-          {/* Sliding track — one big image at a time, whole track moves */}
+          {/* Sliding track — last item is a clone of the first for seamless right-loop */}
           <div
-            className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+            className={`flex h-full w-full ${animate ? "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""} will-change-transform`}
             style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+            onTransitionEnd={onTrackTransitionEnd}
           >
-            {GALLERY.map((src, i) => (
+            {[...GALLERY, GALLERY[0]].map((src, i) => (
               <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
                 <img
                   src={src}
-                  alt={`HBS VIP Club Telegram ${i + 1}`}
+                  alt={`HBS VIP Club Telegram ${(i % GALLERY.length) + 1}`}
                   className="h-full w-auto max-w-full object-contain block"
                   loading={i < 2 ? "eager" : "lazy"}
                   decoding="async"

@@ -7,6 +7,7 @@ import mentorMamur from "@/assets/mentor-mamur.png";
 import mentorAbdulloh from "@/assets/mentor-abdulloh.png";
 import mentorEldorbek from "@/assets/mentor-eldorbek.png";
 import mentorBaxodir from "@/assets/mentor-baxodir.png";
+import mentorAmirxon from "@/assets/mentor-amirxon.jpeg";
 
 type Stat = { icon: React.ElementType; text: string };
 

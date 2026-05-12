@@ -113,6 +113,7 @@ const Card = ({
   accent,
   stats,
   delay,
+  objectPosition,
 }: {
   name: string;
   role: string;
@@ -122,6 +123,7 @@ const Card = ({
   accent: string;
   stats: Stat[];
   delay: number;
+  objectPosition?: string;
 }) => {
   const { ref, inView } = useInView<HTMLDivElement>();
   return (
@@ -136,12 +138,13 @@ const Card = ({
         {/* Photo */}
         <div className="relative h-56 md:h-60 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.25),transparent_60%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-card/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-card/95 z-10" />
           <img
             src={photo}
             alt={name}
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.06]"
+            style={{ objectPosition: objectPosition ?? "center top" }}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
           />
 
           <div className="absolute top-3 left-3">

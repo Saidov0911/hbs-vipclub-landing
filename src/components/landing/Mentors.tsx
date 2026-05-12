@@ -50,7 +50,7 @@ const mentors: MentorMeta[] = [
     icon: LineChart,
     market: "Stocks",
     accent: "text-emerald-400",
-    objectPosition: "center 20%",
+    objectPosition: "center center",
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 4 yillik tajriba" },
       { icon: TrendingUp, text: "Yillik stabil 23% daromad" },

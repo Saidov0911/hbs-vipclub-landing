@@ -18,6 +18,7 @@ type MentorMeta = {
   market: "Crypto" | "Stocks";
   accent: string;
   stats: Stat[];
+  objectPosition?: string;
 };
 
 const mentors: MentorMeta[] = [

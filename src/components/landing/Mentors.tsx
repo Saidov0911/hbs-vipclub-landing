@@ -7,6 +7,7 @@ import mentorMamur from "@/assets/mentor-mamur.png";
 import mentorAbdulloh from "@/assets/mentor-abdulloh.png";
 import mentorEldorbek from "@/assets/mentor-eldorbek.png";
 import mentorBaxodir from "@/assets/mentor-baxodir.png";
+import mentorAmirxon from "@/assets/mentor-amirxon.jpeg";
 
 type Stat = { icon: React.ElementType; text: string };
 
@@ -17,6 +18,7 @@ type MentorMeta = {
   market: "Crypto" | "Stocks";
   accent: string;
   stats: Stat[];
+  objectPosition?: string;
 };
 
 const mentors: MentorMeta[] = [
@@ -48,6 +50,7 @@ const mentors: MentorMeta[] = [
     icon: LineChart,
     market: "Stocks",
     accent: "text-emerald-400",
+    objectPosition: "center 20%",
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 4 yillik tajriba" },
       { icon: TrendingUp, text: "Yillik stabil 23% daromad" },
@@ -64,13 +67,24 @@ const mentors: MentorMeta[] = [
       { icon: Wallet, text: "HBS jamoasi bilan $600 000 aylanma" },
     ],
   },
+  {
+    key: "mentor.6",
+    photo: mentorAmirxon,
+    icon: Bitcoin,
+    market: "Crypto",
+    accent: "text-amber-400",
+    stats: [
+      { icon: Briefcase, text: "Kripto treyder — 4 yillik tajriba" },
+      { icon: Wallet, text: "1 000 000$ dan oshiq aylanma" },
+    ],
+  },
 ];
 
 export const Mentors = () => {
   const { t } = useI18n();
   return (
     <Section id="mentors" eyebrow="Jamoa" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 md:gap-6">
         {mentors.map((m, i) => (
           <Card
             key={m.key}
@@ -81,6 +95,7 @@ export const Mentors = () => {
             market={m.market}
             accent={m.accent}
             stats={m.stats}
+            objectPosition={m.objectPosition}
             delay={i * 90}
           />
         ))}
@@ -98,6 +113,7 @@ const Card = ({
   accent,
   stats,
   delay,
+  objectPosition,
 }: {
   name: string;
   role: string;
@@ -107,6 +123,7 @@ const Card = ({
   accent: string;
   stats: Stat[];
   delay: number;
+  objectPosition?: string;
 }) => {
   const { ref, inView } = useInView<HTMLDivElement>();
   return (
@@ -121,12 +138,13 @@ const Card = ({
         {/* Photo */}
         <div className="relative h-56 md:h-60 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.25),transparent_60%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-card/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-card/95 z-10" />
           <img
             src={photo}
             alt={name}
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.06]"
+            style={{ objectPosition: objectPosition ?? "center top" }}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
           />
 
           <div className="absolute top-3 left-3">
@@ -145,11 +163,11 @@ const Card = ({
         </div>
 
         {/* Info */}
-        <div className="relative px-5 pb-5 -mt-6 flex-1 flex flex-col">
-          <h3 className="font-display font-semibold text-lg md:text-xl text-foreground leading-tight">
+        <div className="relative px-5 pb-5 pt-4 flex-1 flex flex-col bg-card/95 backdrop-blur-sm border-t border-border/40">
+          <h3 className="font-display font-bold text-xl md:text-2xl text-foreground leading-tight tracking-tight">
             {name}
           </h3>
-          <p className="mt-1 text-sm text-gold/90">{role}</p>
+          <p className="mt-1.5 text-sm font-semibold text-gold">{role}</p>
 
           {/* Stats list — reveals on hover with staggered slide-up */}
           <ul

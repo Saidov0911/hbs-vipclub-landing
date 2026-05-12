@@ -153,6 +153,8 @@ const uz: Dict = {
   "mentor.4.role": "CEO and Founder",
   "mentor.5.name": "Eldorbek Sotvoldiev",
   "mentor.5.role": "Kripto treyder",
+  "mentor.6.name": "Amirxon Oripov",
+  "mentor.6.role": "Kripto treyder",
 
   // Values
   "values.eyebrow": "Qadriyatlar",

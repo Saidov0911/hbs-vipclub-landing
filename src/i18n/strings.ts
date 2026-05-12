@@ -187,7 +187,7 @@ const uz: Dict = {
   "faq.a2":
     "Telegram bot orqali ro‘yxatdan o‘tasiz, qulay obuna turini tanlaysiz va to‘lovdan so‘ng yopiq guruhga avtomatik qo‘shilasiz.",
   "faq.q3": "VIP Club narxi qancha?",
-  "faq.a3": "Oylik obuna 49 000 so‘m, yillik obuna esa 450 000 so‘m. Barcha bo‘limlar shu narx ichida.",
+  "faq.a3": "Oylik obuna 88 000 so‘m, yarim yillik obuna esa 475 000 so‘m, bir yillik 880 000 so‘m. Barcha bo‘limlar shu narx ichida.",
   "faq.q4": "VIP Club obunasini qanday bekor qilish mumkin?",
   "faq.a4":
     "Obunani istalgan vaqtda Telegram bot orqali yoki bizning qo‘llab-quvvatlash xizmatiga yozib bekor qilishingiz mumkin.",

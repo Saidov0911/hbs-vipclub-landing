@@ -120,20 +120,42 @@ export const Hero = () => {
 
 /** Hero gallery wrapper — laptop mockup + small dot indicators below the screen. */
 const HeroGallery = () => {
+  // index can range 0..GALLERY.length (last is a clone of first for seamless right-loop)
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % GALLERY.length);
+      setAnimate(true);
+      setIndex((i) => i + 1);
     }, 3000);
     return () => clearInterval(id);
   }, [paused]);
 
-  const go = (dir: 1 | -1) => {
-    setIndex((i) => (i + dir + GALLERY.length) % GALLERY.length);
+  // After sliding to the cloned first (index === GALLERY.length), snap back to 0 without animation
+  const onTrackTransitionEnd = () => {
+    if (index === GALLERY.length) {
+      setAnimate(false);
+      setIndex(0);
+      // re-enable animation on next frame
+      requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+    }
   };
+
+  const go = (dir: 1 | -1) => {
+    setAnimate(true);
+    setIndex((i) => {
+      const next = i + dir;
+      if (next < 0) return GALLERY.length - 1;
+      if (next > GALLERY.length) return 1;
+      return next;
+    });
+  };
+
+  const activeDot = index % GALLERY.length;
+  const remaining = GALLERY.length - 1 - activeDot;
 
   return (
     <div className="relative -mb-32 sm:-mb-44 md:-mb-56">
@@ -145,16 +167,17 @@ const HeroGallery = () => {
           onTouchStart={() => setPaused(true)}
           onTouchEnd={() => setPaused(false)}
         >
-          {/* Sliding track — one big image at a time, whole track moves */}
+          {/* Sliding track — last item is a clone of the first for seamless right-loop */}
           <div
-            className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+            className={`flex h-full w-full ${animate ? "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""} will-change-transform`}
             style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+            onTransitionEnd={onTrackTransitionEnd}
           >
-            {GALLERY.map((src, i) => (
+            {[...GALLERY, GALLERY[0]].map((src, i) => (
               <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
                 <img
                   src={src}
-                  alt={`HBS VIP Club Telegram ${i + 1}`}
+                  alt={`HBS VIP Club Telegram ${(i % GALLERY.length) + 1}`}
                   className="h-full w-auto max-w-full object-contain block"
                   loading={i < 2 ? "eager" : "lazy"}
                   decoding="async"
@@ -190,25 +213,36 @@ const HeroGallery = () => {
 
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
 
-      {/* Dot indicators — below the laptop screen, small */}
-      <div className="relative z-10 mt-4 md:mt-5 flex items-center justify-center gap-1.5">
-        {GALLERY.map((_, i) => {
-          const isActive = i === index;
-          return (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Go to screenshot ${i + 1}`}
-              aria-current={isActive ? "true" : undefined}
-              onClick={() => setIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                isActive
-                  ? "w-5 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
-                  : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
-              }`}
-            />
-          );
-        })}
+      {/* Dot indicators + remaining counter — below the laptop screen */}
+      <div className="relative z-10 mt-4 md:mt-5 flex flex-col items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-1.5">
+          {GALLERY.map((_, i) => {
+            const isActive = i === activeDot;
+            return (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to screenshot ${i + 1}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => {
+                  setAnimate(true);
+                  setIndex(i);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "w-5 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
+                    : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
+                }`}
+              />
+            );
+          })}
+        </div>
+        <div className="text-[11px] md:text-xs text-muted-foreground tabular-nums">
+          {activeDot + 1} / {GALLERY.length}
+          {remaining > 0 && (
+            <span className="ml-2 text-foreground/50">· {remaining} qoldi</span>
+          )}
+        </div>
       </div>
     </div>
   );

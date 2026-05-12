@@ -18,7 +18,7 @@ export const TelegramChatScreen = ({
         </div>
         <div className="flex-1 min-w-0">
           <div className="text-[13px] font-semibold truncate text-foreground">HBS VIP Club</div>
-          <div className="text-[11px] text-accent">online · 1 248 a’zo</div>
+          <div className="text-[11px] text-accent">online · 400+ a’zo</div>
         </div>
         <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Yopiq</div>
       </div>

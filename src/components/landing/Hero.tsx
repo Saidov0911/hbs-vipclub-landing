@@ -120,20 +120,42 @@ export const Hero = () => {
 
 /** Hero gallery wrapper — laptop mockup + small dot indicators below the screen. */
 const HeroGallery = () => {
+  // index can range 0..GALLERY.length (last is a clone of first for seamless right-loop)
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % GALLERY.length);
+      setAnimate(true);
+      setIndex((i) => i + 1);
     }, 3000);
     return () => clearInterval(id);
   }, [paused]);
 
-  const go = (dir: 1 | -1) => {
-    setIndex((i) => (i + dir + GALLERY.length) % GALLERY.length);
+  // After sliding to the cloned first (index === GALLERY.length), snap back to 0 without animation
+  const onTrackTransitionEnd = () => {
+    if (index === GALLERY.length) {
+      setAnimate(false);
+      setIndex(0);
+      // re-enable animation on next frame
+      requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+    }
   };
+
+  const go = (dir: 1 | -1) => {
+    setAnimate(true);
+    setIndex((i) => {
+      const next = i + dir;
+      if (next < 0) return GALLERY.length - 1;
+      if (next > GALLERY.length) return 1;
+      return next;
+    });
+  };
+
+  const activeDot = index % GALLERY.length;
+  const remaining = GALLERY.length - 1 - activeDot;
 
   return (
     <div className="relative -mb-32 sm:-mb-44 md:-mb-56">

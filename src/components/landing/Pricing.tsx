@@ -29,6 +29,7 @@ export const Pricing = () => {
           badge={t("price.halfyear.badge")}
           label={t("price.halfyear")}
           amount={t("price.halfyear.amount")}
+          original={t("price.halfyear.original")}
           unit={t("price.halfyear.unit")}
           features={features.map((k) => t(k))}
         />
@@ -37,6 +38,7 @@ export const Pricing = () => {
           badge={t("price.yearly.badge")}
           label={t("price.yearly")}
           amount={t("price.yearly.amount")}
+          original={t("price.yearly.original")}
           unit={t("price.yearly.unit")}
           features={features.map((k) => t(k))}
         />

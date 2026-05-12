@@ -61,6 +61,7 @@ export const Pricing = () => {
 const PriceCard = ({
   label,
   amount,
+  original,
   unit,
   features,
   highlight,
@@ -68,6 +69,7 @@ const PriceCard = ({
 }: {
   label: string;
   amount: string;
+  original?: string;
   unit: string;
   features: string[];
   highlight?: boolean;

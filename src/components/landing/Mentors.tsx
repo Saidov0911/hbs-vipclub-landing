@@ -163,11 +163,11 @@ const Card = ({
         </div>
 
         {/* Info */}
-        <div className="relative px-5 pb-5 -mt-6 flex-1 flex flex-col">
-          <h3 className="font-display font-semibold text-lg md:text-xl text-foreground leading-tight">
+        <div className="relative px-5 pb-5 pt-4 flex-1 flex flex-col bg-card/95 backdrop-blur-sm border-t border-border/40">
+          <h3 className="font-display font-bold text-xl md:text-2xl text-foreground leading-tight tracking-tight">
             {name}
           </h3>
-          <p className="mt-1 text-sm text-gold/90">{role}</p>
+          <p className="mt-1.5 text-sm font-semibold text-gold">{role}</p>
 
           {/* Stats list — reveals on hover with staggered slide-up */}
           <ul

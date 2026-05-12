@@ -60,7 +60,7 @@ export const WhatIs = () => {
                   ))}
                 </div>
                 <div className="text-xs">
-                  <div className="text-foreground font-semibold">1 248+ a’zo</div>
+                  <div className="text-foreground font-semibold">400+ a’zo</div>
                   <div className="text-muted-foreground">Faqat ishonchli treyderlar</div>
                 </div>
               </div>

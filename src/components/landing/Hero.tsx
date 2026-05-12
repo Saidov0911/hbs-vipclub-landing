@@ -213,25 +213,36 @@ const HeroGallery = () => {
 
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none" />
 
-      {/* Dot indicators — below the laptop screen, small */}
-      <div className="relative z-10 mt-4 md:mt-5 flex items-center justify-center gap-1.5">
-        {GALLERY.map((_, i) => {
-          const isActive = i === index;
-          return (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Go to screenshot ${i + 1}`}
-              aria-current={isActive ? "true" : undefined}
-              onClick={() => setIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                isActive
-                  ? "w-5 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
-                  : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
-              }`}
-            />
-          );
-        })}
+      {/* Dot indicators + remaining counter — below the laptop screen */}
+      <div className="relative z-10 mt-4 md:mt-5 flex flex-col items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-1.5">
+          {GALLERY.map((_, i) => {
+            const isActive = i === activeDot;
+            return (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to screenshot ${i + 1}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => {
+                  setAnimate(true);
+                  setIndex(i);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "w-5 bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.7)]"
+                    : "w-1.5 bg-foreground/30 hover:bg-foreground/60"
+                }`}
+              />
+            );
+          })}
+        </div>
+        <div className="text-[11px] md:text-xs text-muted-foreground tabular-nums">
+          {activeDot + 1} / {GALLERY.length}
+          {remaining > 0 && (
+            <span className="ml-2 text-foreground/50">· {remaining} qoldi</span>
+          )}
+        </div>
       </div>
     </div>
   );

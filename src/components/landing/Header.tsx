@@ -61,20 +61,6 @@ export const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden sm:flex items-center rounded-full border border-border/70 p-0.5 text-[11px] font-semibold">
-              {(["uz", "ru"] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  className={cn(
-                    "px-2.5 py-1 rounded-full uppercase tracking-wider transition-all",
-                    lang === l ? "bg-gradient-gold text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
             <button
               onClick={() => scrollTo("#pricing")}
               className="hidden md:inline-flex btn-gold px-4 py-2 rounded-full text-sm font-semibold"

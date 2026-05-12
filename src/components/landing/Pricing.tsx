@@ -104,6 +104,13 @@ const PriceCard = ({
         <div className="absolute -inset-px rounded-2xl bg-gradient-gold opacity-25 blur-xl -z-10" />
       )}
       <div className="text-sm font-semibold text-muted-foreground mb-3">{label}</div>
+      {original && (
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-base md:text-lg text-muted-foreground/80 line-through decoration-destructive/70 decoration-2">
+            {original}
+          </span>
+        </div>
+      )}
       <div className="flex items-baseline gap-2 mb-5">
         <span className={cn("font-display font-extrabold text-4xl md:text-5xl tracking-tight", highlight ? "text-gold" : "text-foreground")}>
           {amount}

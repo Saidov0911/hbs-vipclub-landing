@@ -3,6 +3,13 @@ import { useI18n } from "@/i18n/I18nProvider";
 import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
+import member1 from "@/assets/member-1.jpeg";
+import member2 from "@/assets/member-2.jpeg";
+import member3 from "@/assets/member-3.jpeg";
+import member4 from "@/assets/member-4.jpeg";
+import member5 from "@/assets/member-5.jpeg";
+
+const memberPhotos = [member1, member2, member3, member4, member5];
 
 type Item = { icon: React.ElementType; key: string };
 
@@ -49,13 +56,13 @@ export const WhatIs = () => {
               {/* Member badges */}
               <div className="relative mt-6 flex items-center gap-3">
                 <div className="flex -space-x-2">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <div
+                  {memberPhotos.map((src, i) => (
+                    <img
                       key={i}
-                      className="h-8 w-8 rounded-full border-2 border-card"
-                      style={{
-                        background: `linear-gradient(140deg, hsl(${(i * 50 + 30) % 360} 50% 35%), hsl(${(i * 50 + 70) % 360} 50% 22%))`,
-                      }}
+                      src={src}
+                      alt={`HBS VIP Club a'zo ${i + 1}`}
+                      loading="lazy"
+                      className="h-8 w-8 rounded-full border-2 border-card object-cover"
                     />
                   ))}
                 </div>

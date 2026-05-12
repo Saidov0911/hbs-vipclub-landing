@@ -73,7 +73,7 @@ const uz: Dict = {
   "results.label.3": "Feedbacklar",
   "results.label.4": "Joiz kripto tekshiruv bot",
   "results.tg.title": "HBS VIP Club",
-  "results.tg.subtitle": "Yopiq kanal · 1 248 a’zo",
+  "results.tg.subtitle": "Yopiq kanal · 400+ a’zo",
 
   // Who for
   "who.title": "Bu klub kimlar uchun?",

@@ -84,7 +84,7 @@ export const Mentors = () => {
   const { t } = useI18n();
   return (
     <Section id="mentors" eyebrow="Jamoa" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 md:gap-6">
         {mentors.map((m, i) => (
           <Card
             key={m.key}
@@ -95,6 +95,7 @@ export const Mentors = () => {
             market={m.market}
             accent={m.accent}
             stats={m.stats}
+            objectPosition={m.objectPosition}
             delay={i * 90}
           />
         ))}

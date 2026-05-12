@@ -50,6 +50,7 @@ const mentors: MentorMeta[] = [
     icon: LineChart,
     market: "Stocks",
     accent: "text-emerald-400",
+    objectPosition: "center 20%",
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 4 yillik tajriba" },
       { icon: TrendingUp, text: "Yillik stabil 23% daromad" },
@@ -64,6 +65,17 @@ const mentors: MentorMeta[] = [
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 3 yillik tajriba" },
       { icon: Wallet, text: "HBS jamoasi bilan $600 000 aylanma" },
+    ],
+  },
+  {
+    key: "mentor.6",
+    photo: mentorAmirxon,
+    icon: Bitcoin,
+    market: "Crypto",
+    accent: "text-amber-400",
+    stats: [
+      { icon: Briefcase, text: "Kripto treyder — 4 yillik tajriba" },
+      { icon: Wallet, text: "1 000 000$ dan oshiq aylanma" },
     ],
   },
 ];

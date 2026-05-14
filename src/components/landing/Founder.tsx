@@ -99,34 +99,26 @@ export const Founder = () => {
               </a>
             </div>
 
-            {/* Bio with quote accent */}
-            <div className="relative mt-5 pl-5">
-              <Quote className="absolute -left-1 top-0 h-4 w-4 text-primary/60" />
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed border-l-2 border-primary/40 pl-4">
+            {/* Bio */}
+            <div className="relative mt-5">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 {t("founder.bio")}
               </p>
             </div>
 
             {/* Badges grid */}
             <div className="mt-7 grid sm:grid-cols-2 gap-2.5">
-              {BADGES.map((b, i) => {
-                const BIcon = b.icon;
-                return (
-                  <div
-                    key={b.key}
-                    style={{ transitionDelay: `${i * 80}ms` }}
-                    className="group/badge relative flex items-start gap-3 rounded-xl px-3.5 py-3 bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/15 border border-primary/40 text-gold group-hover/badge:bg-primary/25 transition-colors">
-                      <BIcon className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="text-[13px] md:text-sm leading-snug text-foreground/95">
-                      {t(b.key)}
-                    </span>
-                    <Award className="absolute top-2 right-2 h-3 w-3 text-gold/40 opacity-0 group-hover/badge:opacity-100 transition-opacity" />
-                  </div>
-                );
-              })}
+              {BADGES.map((b, i) => (
+                <div
+                  key={b.key}
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                  className="group/badge relative flex items-start rounded-xl px-3.5 py-3 bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="text-[13px] md:text-sm leading-snug text-foreground/95">
+                    {t(b.key)}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Companies strip */}

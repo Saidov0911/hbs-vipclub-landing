@@ -64,7 +64,7 @@ const mentors: MentorMeta[] = [
     accent: "text-amber-400",
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 3 yillik tajriba" },
-      { icon: Wallet, text: "HBS jamoasi bilan $600 000 aylanma" },
+      { icon: Wallet, text: "ELMAKON jamoasi bilan $600 000 aylanma" },
     ],
   },
   {
@@ -74,19 +74,20 @@ const mentors: MentorMeta[] = [
     market: "Crypto",
     accent: "text-amber-400",
     stats: [
-      { icon: Briefcase, text: "Kripto treyder — 4 yillik tajriba" },
-      { icon: Wallet, text: "1 000 000$ dan oshiq aylanma" },
+      { icon: Briefcase, text: "Moliya bozorida — 4 yillik tajriba" },
+      { icon: TrendingUp, text: "Yillik 50%+ daromad" },
     ],
   },
 ];
 
 export const Mentors = () => {
   const { t } = useI18n();
+
   return (
-    <Section id="mentors" eyebrow="Jamoa" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 md:gap-6">
-        {mentors.map((m, i) => (
-          <Card
+    <Section id="mentors" eyebrow="Mentorlar" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        {mentors.map((m, idx) => (
+          <MentorCard
             key={m.key}
             name={t(`${m.key}.name`)}
             role={t(`${m.key}.role`)}
@@ -95,8 +96,8 @@ export const Mentors = () => {
             market={m.market}
             accent={m.accent}
             stats={m.stats}
+            delay={idx * 150}
             objectPosition={m.objectPosition}
-            delay={i * 90}
           />
         ))}
       </div>
@@ -104,7 +105,7 @@ export const Mentors = () => {
   );
 };
 
-const Card = ({
+const MentorCard = ({
   name,
   role,
   photo,
@@ -125,39 +126,41 @@ const Card = ({
   delay: number;
   objectPosition?: string;
 }) => {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
+
   return (
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={cn("group relative reveal", inView && "is-visible")}
+      className={cn(
+        "group relative flex flex-col h-full rounded-2xl overflow-hidden glass hover:border-primary/50 transition-all duration-500 reveal",
+        inView && "is-visible"
+      )}
     >
-      <div className="absolute -inset-px rounded-[22px] bg-gradient-to-br from-primary/40 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-
-      <div className="relative h-full glass-strong rounded-[20px] overflow-hidden border border-border/60 group-hover:border-primary/40 transition-all duration-500 group-hover:-translate-y-1.5 shadow-card group-hover:shadow-elegant flex flex-col">
-        {/* Photo */}
-        <div className="relative h-56 md:h-60 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.25),transparent_60%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-card/95 z-10" />
+      <div className="flex flex-col h-full">
+        {/* Photo Container */}
+        <div className="relative aspect-[4/5] overflow-hidden">
           <img
             src={photo}
             alt={name}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            style={{ objectPosition }}
             loading="lazy"
-            style={{ objectPosition: objectPosition ?? "center top" }}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
 
-          <div className="absolute top-3 left-3">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-background/70 backdrop-blur-md border border-border/60 px-2.5 py-1 text-[11px] font-semibold text-foreground">
+          {/* Market Badge */}
+          <div className="absolute top-4 right-4 flex flex-col items-end gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-foreground shadow-lg">
               <Icon className={cn("h-3.5 w-3.5", accent)} />
               {market}
             </span>
           </div>
 
-          <div className="absolute top-3 right-3">
-            <span className="inline-flex items-center gap-1 rounded-full bg-primary/15 backdrop-blur-md border border-primary/40 px-2 py-1 text-[10px] font-semibold text-gold">
-              <Sparkles className="h-3 w-3" />
-              HBS
+          {/* Floating Brand */}
+          <div className="absolute top-4 left-4">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-1 block">
+              ELMAKON
             </span>
           </div>
         </div>

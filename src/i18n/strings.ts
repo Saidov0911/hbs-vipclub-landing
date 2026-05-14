@@ -18,7 +18,7 @@ const uz: Dict = {
 
   // Hero
   "hero.badge": "Yopiq Telegram hamjamiyat",
-  "hero.title.1": "ELMAKON\n",
+  "hero.title.1": "HBS VIP Club\n",
   "hero.title.2": "UZBEKISTONDAGI N.1 TREYDERLAR KLUBI",
   "hero.subtitle":
     "Professional treyderlar bilan birga o‘rganing, signal va tahlillardan foydalaning, kripto va aksiya bozorida tajribali hamjamiyat ichida rivojlaning.",
@@ -72,7 +72,7 @@ const uz: Dict = {
   "results.label.2": "Club ichidagi darslar",
   "results.label.3": "Feedbacklar",
   "results.label.4": "Joiz kripto tekshiruv bot",
-  "results.tg.title": "ELMAKON",
+  "results.tg.title": "HBS VIP Club",
   "results.tg.subtitle": "Yopiq kanal · 400+ a’zo",
 
   // Who for
@@ -105,7 +105,7 @@ const uz: Dict = {
   "join.title": "VIP Clubga qanday qo‘shilish mumkin?",
   "join.subtitle": "Hammasi Telegram bot orqali — 4 ta sodda qadamda, 2 daqiqada.",
   "join.1.title": "Telegram botni oching",
-  "join.1.desc": "Quyidagi tugma orqali rasmiy ELMAKON botiga o‘ting va “Start” tugmasini bosing.",
+  "join.1.desc": "Quyidagi tugma orqali rasmiy HBS VIP Club botiga o‘ting va “Start” tugmasini bosing.",
   "join.2.title": "Qisqa ro‘yxatdan o‘ting",
   "join.2.desc": "Ism va telefon raqamingizni kiriting — bot sizni qadam-baqadam yo‘naltiradi.",
   "join.3.title": "Tarifni tanlab, to‘lovni amalga oshiring",
@@ -114,7 +114,7 @@ const uz: Dict = {
   "join.4.desc": "To‘lov tasdiqlangach, bot sizga shaxsiy taklif havolasini yuboradi va siz darhol klub ichida bo‘lasiz.",
   "join.cta": "Botga o‘tish",
   "join.final.title": "Tayyor — bir bosishda ichkarida",
-  "join.final.desc": "Botni oching, tarifni tanlang va ELMAKON hamjamiyatining bir qismi bo‘ling.",
+  "join.final.desc": "Botni oching, tarifni tanlang va HBS VIP Club hamjamiyatining bir qismi bo‘ling.",
 
   // Pricing
   "price.title": "Obuna narxlari",
@@ -158,7 +158,7 @@ const uz: Dict = {
 
   // Values
   "values.eyebrow": "Qadriyatlar",
-  "values.title": "ELMAKON’da qadriyatlar birinchi o‘rinda",
+  "values.title": "HBS VIP Club’da qadriyatlar birinchi o‘rinda",
   "values.subtitle": "Biz uchun halollik, bilim va hamjamiyat — eng muhim ustunlar.",
   "values.1.title": "Joiz va nojoiz kriptolar tekshirish imkoniyati",
   "values.1.desc": "Har bir loyiha shariat va xavfsizlik nuqtai nazaridan tahlil qilinadi — siz halol va ishonchli aktivlarga sarmoya kiritasiz.",
@@ -170,14 +170,14 @@ const uz: Dict = {
   "values.4.desc": "Hech qanday yashirin to‘lov yoki aldov yo‘q — natijalar, signallar va fikrlar ochiq ko‘rsatiladi.",
 
   // Founder
-  "founder.title": "ELMAKON asoschisi",
+  "founder.title": "HBS VIP Club asoschisi",
   "founder.name": "Mushlihiddin Hayitbaev",
   "founder.bio":
-    "Tadbirkor, treyder va jamoa rahbari. ELMAKON jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
-  "founder.badge.1": "“ELMAKON” kompaniyasi asoschisi",
+    "Tadbirkor, treyder va jamoa rahbari. HBS VIP Club jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
+  "founder.badge.1": "“HBS VIP Club” kompaniyasi asoschisi",
   "founder.badge.2": "“Elmakon” marketpleysi asoschilaridan biri",
   "founder.badge.3": "“Elmakon”ning aksionerlaridan biri",
-  "founder.badge.4": "Treyding orqali ELMAKON jamoasi yillik 55% daromad qildi",
+  "founder.badge.4": "Treyding orqali HBS VIP Club jamoasi yillik 55% daromad qildi",
   "founder.badge.5": "“BM Electronics” sobiq direktori",
 
   // FAQ

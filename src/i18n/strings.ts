@@ -151,7 +151,7 @@ const uz: Dict = {
 
   // Values
   "values.eyebrow": "Qadriyatlar",
-  "values.title": "HBS VIP Club’da qadriyatlar birinchi o‘rinda",
+  "values.title": "ELMAKON’da qadriyatlar birinchi o‘rinda",
   "values.subtitle": "Biz uchun halollik, bilim va hamjamiyat — eng muhim ustunlar.",
   "values.1.title": "Joiz va nojoiz kriptolar tekshirish imkoniyati",
   "values.1.desc": "Har bir loyiha shariat va xavfsizlik nuqtai nazaridan tahlil qilinadi — siz halol va ishonchli aktivlarga sarmoya kiritasiz.",

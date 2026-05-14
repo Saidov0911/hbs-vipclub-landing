@@ -51,7 +51,7 @@ const uz: Dict = {
   "inside.2.title": "Stock g‘oyalar",
   "inside.2.desc": "Aksiya bozoridagi yangi savdo g‘oyalari va kirish nuqtalari.",
   "inside.3.title": "Crypto g‘oyalar",
-  "inside.3.desc": "Spot va fyuchers savdolar bo‘yicha kunlik kripto g‘oyalar.",
+  "inside.3.desc": "Spot savdolar bo‘yicha kunlik kripto g‘oyalar.",
   "inside.4.title": "Joiz kripto tekshirish",
   "inside.4.desc": "Loyihaning halol va xavfsiz ekanligini tekshirib beramiz.",
   "inside.5.title": "Treyderlar kommyunitisi",

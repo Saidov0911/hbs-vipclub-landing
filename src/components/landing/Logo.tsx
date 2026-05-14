@@ -23,7 +23,7 @@ export const Logo = ({
           height={size}
           loading="eager"
           decoding="async"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover [image-rendering:high-quality]"
         />
       </div>
       {showWordmark && (

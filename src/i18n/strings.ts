@@ -18,7 +18,7 @@ const uz: Dict = {
 
   // Hero
   "hero.badge": "Yopiq Telegram hamjamiyat",
-  "hero.title.1": "HBS VIP Club ",
+  "hero.title.1": "ELMAKON ",
   "hero.title.2": "UZBEKISTONDAGI N.1 TREYDERLAR KLUBI",
   "hero.subtitle":
     "Professional treyderlar bilan birga o‘rganing, signal va tahlillardan foydalaning, kripto va aksiya bozorida tajribali hamjamiyat ichida rivojlaning.",

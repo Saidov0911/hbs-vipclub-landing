@@ -177,7 +177,7 @@ const HeroGallery = () => {
               <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
                 <img
                   src={src}
-                  alt={`ELMAKON Telegram ${(i % GALLERY.length) + 1}`}
+                  alt={`HBS ACADEMY Telegram ${(i % GALLERY.length) + 1}`}
                   className="h-full w-auto max-w-full object-contain block"
                   loading={i < 2 ? "eager" : "lazy"}
                   decoding="async"

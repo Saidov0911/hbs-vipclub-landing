@@ -100,8 +100,15 @@ export const Founder = () => {
             </div>
 
             {/* Bio */}
-            <div className="relative mt-5">
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            <div className="relative mt-5 max-w-2xl">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-2xl bg-gradient-to-r from-primary/10 via-primary-glow/5 to-transparent blur-2xl"
+              />
+              <p
+                className="text-gold relative text-lg md:text-2xl font-display font-semibold tracking-[-0.01em] leading-[1.25]"
+                style={{ filter: "drop-shadow(0 0 18px hsl(var(--primary) / 0.35))" }}
+              >
                 {t("founder.bio")}
               </p>
             </div>

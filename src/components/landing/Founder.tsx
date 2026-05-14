@@ -18,9 +18,9 @@ const BADGES: { key: string; icon: React.ElementType }[] = [
 ];
 
 const COMPANIES: { name: string; src: string }[] = [
-  { name: "ELMAKON", src: brandElmakon },
+  { name: "HBS VIP Club", src: brandElmakon },
   { name: "BM Electronics", src: brandBmElectronics },
-  { name: "ELMAKON", src: brandHbs },
+  { name: "HBS VIP Club", src: brandHbs },
   { name: "Saraf", src: brandSaraf },
 ];
 

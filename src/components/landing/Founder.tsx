@@ -27,7 +27,7 @@ export const Founder = () => {
   const { t } = useI18n();
   const { ref, inView } = useInView<HTMLDivElement>(0.1);
   return (
-    <Section id="founder" eyebrow="Asoschi" title={t("founder.title")}>
+    <Section id="founder" eyebrow="Asoschi">
       <div
         ref={ref}
         className={cn(

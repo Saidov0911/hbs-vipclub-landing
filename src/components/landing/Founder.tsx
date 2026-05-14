@@ -1,4 +1,4 @@
-import { Award, Briefcase, Building2, TrendingUp, Quote, Sparkles } from "lucide-react";
+import { Award, Briefcase, Building2, TrendingUp, Quote, Sparkles, Instagram, Linkedin } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
@@ -12,9 +12,8 @@ import brandSaraf from "@/assets/brand-saraf.png";
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
   { key: "founder.badge.2", icon: Sparkles },
-  { key: "founder.badge.3", icon: Award },
+  { key: "founder.badge.3", icon: Briefcase },
   { key: "founder.badge.4", icon: TrendingUp },
-  { key: "founder.badge.5", icon: Briefcase },
 ];
 
 const COMPANIES: { name: string; src: string }[] = [

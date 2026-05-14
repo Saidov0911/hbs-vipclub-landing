@@ -12,8 +12,9 @@ import brandSaraf from "@/assets/brand-saraf.png";
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
   { key: "founder.badge.2", icon: Sparkles },
-  { key: "founder.badge.3", icon: TrendingUp },
-  { key: "founder.badge.4", icon: Briefcase },
+  { key: "founder.badge.3", icon: Award },
+  { key: "founder.badge.4", icon: TrendingUp },
+  { key: "founder.badge.5", icon: Briefcase },
 ];
 
 const COMPANIES: { name: string; src: string }[] = [
@@ -80,7 +81,7 @@ export const Founder = () => {
             {/* Eyebrow tag */}
             <div className="inline-flex items-center gap-2 rounded-full glass-strong border border-primary/30 px-3 py-1 text-[11px] font-semibold text-gold mb-4">
               <Sparkles className="h-3 w-3" />
-              HBS VIP Club asoschisi
+              HBS asoschisi
             </div>
 
             <h3 className="font-display font-extrabold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.05] text-foreground">

@@ -170,14 +170,15 @@ const uz: Dict = {
   "values.4.desc": "Hech qanday yashirin to‘lov yoki aldov yo‘q — natijalar, signallar va fikrlar ochiq ko‘rsatiladi.",
 
   // Founder
-  "founder.title": "\n",
+  "founder.title": "HBS asoschisi",
   "founder.name": "Mushlihiddin Hayitbaev",
   "founder.bio":
-    "Tadbirkor, treyder va jamoa rahbari. ELMAKON jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
-  "founder.badge.1": "ELMAKON kompaniyasi asoschisi",
-  "founder.badge.2": "Elmakon marketplace asoschilaridan biri",
-  "founder.badge.3": "Trading orqali ELMAKON jamoasi yillik 60% daromad qildi",
-  "founder.badge.4": "BFM Electronics savdo direktori",
+    "Tadbirkor, treyder va jamoa rahbari. HBS jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
+  "founder.badge.1": "“HBS” kompaniyasi asoschisi",
+  "founder.badge.2": "“Elmakon” marketpleysi asoschilaridan biri",
+  "founder.badge.3": "“Elmakon”ning aksionerlaridan biri",
+  "founder.badge.4": "Treyding orqali HBS jamoasi yillik 55% daromad qildi",
+  "founder.badge.5": "“BM Electronics” sobiq direktori",
 
   // FAQ
   "faq.title": "Tez-tez so‘raladigan savollar",

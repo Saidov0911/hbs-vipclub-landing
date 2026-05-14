@@ -44,7 +44,7 @@ export const Header = () => {
             scrolled ? "glass-strong shadow-card" : "bg-transparent"
           )}
         >
-          <button onClick={() => scrollTo("#top")} aria-label="ELMAKON">
+          <button onClick={() => scrollTo("#top")} aria-label="HBS VIP Club">
             <Logo size={40} />
           </button>
 

@@ -1,4 +1,4 @@
-import { Award, Briefcase, Building2, TrendingUp, Quote, Sparkles } from "lucide-react";
+import { Award, Briefcase, Building2, TrendingUp, Quote, Sparkles, Instagram, Linkedin } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
@@ -12,14 +12,14 @@ import brandSaraf from "@/assets/brand-saraf.png";
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
   { key: "founder.badge.2", icon: Sparkles },
-  { key: "founder.badge.3", icon: TrendingUp },
-  { key: "founder.badge.4", icon: Briefcase },
+  { key: "founder.badge.3", icon: Briefcase },
+  { key: "founder.badge.4", icon: TrendingUp },
 ];
 
 const COMPANIES: { name: string; src: string }[] = [
-  { name: "HBS", src: brandElmakon },
+  { name: "Elmakon", src: brandElmakon },
   { name: "BM Electronics", src: brandBmElectronics },
-  { name: "HBS VIP Club", src: brandHbs },
+  { name: "HBS", src: brandHbs },
   { name: "Saraf", src: brandSaraf },
 ];
 
@@ -27,7 +27,7 @@ export const Founder = () => {
   const { t } = useI18n();
   const { ref, inView } = useInView<HTMLDivElement>(0.1);
   return (
-    <Section id="founder" eyebrow="Asoschi" title={t("founder.title")}>
+    <Section id="founder" eyebrow="Asoschi">
       <div
         ref={ref}
         className={cn(
@@ -50,11 +50,7 @@ export const Founder = () => {
         <div className="relative grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center p-8 md:p-14">
           {/* Photo column */}
           <div className="relative mx-auto md:mx-0">
-            {/* Rotating gradient ring */}
-            <div className="absolute -inset-3 rounded-full bg-[conic-gradient(from_0deg,hsl(var(--primary)),hsl(var(--primary-glow)),hsl(var(--primary)))] opacity-40 blur-md animate-glow-pulse" />
-            <div className="absolute -inset-1 rounded-full bg-gradient-gold opacity-60 blur-xl" />
-
-            <div className="relative h-[220px] w-[220px] md:h-[260px] md:w-[260px] rounded-full overflow-hidden ring-2 ring-primary/50 ring-offset-4 ring-offset-background bg-gradient-to-b from-secondary/60 to-background shadow-gold">
+            <div className="relative h-[220px] w-[220px] md:h-[260px] md:w-[260px] rounded-full overflow-hidden ring-2 ring-primary/50 ring-offset-4 ring-offset-background bg-gradient-to-b from-secondary/60 to-background">
               <img
                 src={founderPhoto}
                 alt={t("founder.name")}
@@ -77,44 +73,59 @@ export const Founder = () => {
 
           {/* Content column */}
           <div>
-            {/* Eyebrow tag */}
-            <div className="inline-flex items-center gap-2 rounded-full glass-strong border border-primary/30 px-3 py-1 text-[11px] font-semibold text-gold mb-4">
-              <Sparkles className="h-3 w-3" />
-              HBS VIP Club asoschisi
-            </div>
-
             <h3 className="font-display font-extrabold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.05] text-foreground">
               {t("founder.name")}
             </h3>
 
-            {/* Bio with quote accent */}
-            <div className="relative mt-5 pl-5">
-              <Quote className="absolute -left-1 top-0 h-4 w-4 text-primary/60" />
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed border-l-2 border-primary/40 pl-4">
+            {/* Social links */}
+            <div className="mt-4 flex items-center gap-2">
+              <a
+                href="https://www.instagram.com/muslihiddin.hayitbaev?igsh=MTY2NmFmb2EydXd0aA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:text-gold hover:border-primary/60 transition-colors"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muslihiddin-hayitbaev-470725171/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:text-gold hover:border-primary/60 transition-colors"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
+
+            {/* Bio */}
+            <div className="relative mt-5 max-w-2xl">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-2xl bg-gradient-to-r from-primary/10 via-primary-glow/5 to-transparent blur-2xl"
+              />
+              <p
+                className="text-gold relative text-lg md:text-2xl font-display font-semibold tracking-[-0.01em] leading-[1.25]"
+                style={{ filter: "drop-shadow(0 0 18px hsl(var(--primary) / 0.35))" }}
+              >
                 {t("founder.bio")}
               </p>
             </div>
 
             {/* Badges grid */}
             <div className="mt-7 grid sm:grid-cols-2 gap-2.5">
-              {BADGES.map((b, i) => {
-                const BIcon = b.icon;
-                return (
-                  <div
-                    key={b.key}
-                    style={{ transitionDelay: `${i * 80}ms` }}
-                    className="group/badge relative flex items-start gap-3 rounded-xl px-3.5 py-3 bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/15 border border-primary/40 text-gold group-hover/badge:bg-primary/25 transition-colors">
-                      <BIcon className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="text-[13px] md:text-sm leading-snug text-foreground/95">
-                      {t(b.key)}
-                    </span>
-                    <Award className="absolute top-2 right-2 h-3 w-3 text-gold/40 opacity-0 group-hover/badge:opacity-100 transition-opacity" />
-                  </div>
-                );
-              })}
+              {BADGES.map((b, i) => (
+                <div
+                  key={b.key}
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                  className="group/badge relative flex items-start rounded-xl px-3.5 py-3 bg-secondary/40 border border-border/60 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="text-[13px] md:text-sm leading-snug text-foreground/95">
+                    {t(b.key)}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Companies strip */}

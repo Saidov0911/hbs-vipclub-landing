@@ -1,6 +1,6 @@
 export type Lang = "uz" | "ru";
 
-export const BOT_URL = "https://t.me/hbs_obuna_bot";
+export const BOT_URL = "https://bit.ly/4dbUgPy";
 export const SUPPORT_URL = "https://t.me/hbs_support";
 
 // Uzbek is the source. Russian mirrors UZ as a placeholder so the toggle works
@@ -18,7 +18,7 @@ const uz: Dict = {
 
   // Hero
   "hero.badge": "Yopiq Telegram hamjamiyat",
-  "hero.title.1": "HBS VIP Club ",
+  "hero.title.1": "HBS VIP Club\n",
   "hero.title.2": "UZBEKISTONDAGI N.1 TREYDERLAR KLUBI",
   "hero.subtitle":
     "Professional treyderlar bilan birga o‘rganing, signal va tahlillardan foydalaning, kripto va aksiya bozorida tajribali hamjamiyat ichida rivojlaning.",
@@ -51,7 +51,7 @@ const uz: Dict = {
   "inside.2.title": "Stock g‘oyalar",
   "inside.2.desc": "Aksiya bozoridagi yangi savdo g‘oyalari va kirish nuqtalari.",
   "inside.3.title": "Crypto g‘oyalar",
-  "inside.3.desc": "Spot va fyuchers savdolar bo‘yicha kunlik kripto g‘oyalar.",
+  "inside.3.desc": "Spot savdolar bo‘yicha kunlik kripto g‘oyalar.",
   "inside.4.title": "Joiz kripto tekshirish",
   "inside.4.desc": "Loyihaning halol va xavfsiz ekanligini tekshirib beramiz.",
   "inside.5.title": "Treyderlar kommyunitisi",
@@ -170,14 +170,13 @@ const uz: Dict = {
   "values.4.desc": "Hech qanday yashirin to‘lov yoki aldov yo‘q — natijalar, signallar va fikrlar ochiq ko‘rsatiladi.",
 
   // Founder
-  "founder.title": "HBS VIP Club asoschisi",
+  "founder.title": "HBS asoschisi",
   "founder.name": "Mushlihiddin Hayitbaev",
-  "founder.bio":
-    "Tadbirkor, treyder va jamoa rahbari. HBS jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
-  "founder.badge.1": "HBS kompaniyasi asoschisi",
-  "founder.badge.2": "Elmakon marketplace asoschilaridan biri",
-  "founder.badge.3": "Trading orqali HBS jamoasi yillik 60% daromad qildi",
-  "founder.badge.4": "BFM Electronics savdo direktori",
+  "founder.bio": "Xalqaro investitsion fond rahbari",
+  "founder.badge.1": "“HBS Technologies” kompaniyasi asoschisi",
+  "founder.badge.2": "“Elmakon” marketpleysining asoschilaridan va aksionerlaridan biri",
+  "founder.badge.3": "“BM Electronics” sobiq direktori",
+  "founder.badge.4": "Treyding orqali HBS jamoasi yillik 55% daromad qildi",
 
   // FAQ
   "faq.title": "Tez-tez so‘raladigan savollar",

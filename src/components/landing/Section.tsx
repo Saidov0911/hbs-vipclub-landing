@@ -27,7 +27,7 @@ export const Section = ({
             className={cn("max-w-3xl mx-auto text-center mb-12 md:mb-16 reveal", inView && "is-visible")}
           >
             {eyebrow && (
-              <div className="inline-block text-[11px] uppercase tracking-[0.25em] text-gold font-semibold mb-3">
+              <div className="inline-block uppercase tracking-[0.25em] text-gold font-semibold mb-3 text-xl">
                 {eyebrow}
               </div>
             )}

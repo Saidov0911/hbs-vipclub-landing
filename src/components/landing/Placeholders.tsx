@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 
-/** HBS gold mark — used as a placeholder logo. Swap to <img src="/logo.svg" /> later. */
+/** HBS VIP Club gold mark — used as a placeholder logo. Swap to <img src="/logo.svg" /> later. */
 export const PlaceholderLogo = ({ className }: { className?: string }) => (
   <div className={cn("flex items-center gap-2.5", className)}>
     <div className="relative h-9 w-9 shrink-0">
       <div className="absolute inset-0 rounded-xl bg-gradient-gold shadow-gold" />
       <div className="absolute inset-[2px] rounded-[10px] bg-background/85 backdrop-blur flex items-center justify-center">
-        <span className="font-display font-extrabold text-[15px] text-gold tracking-tight">H</span>
+        <span className="font-display font-extrabold text-[15px] text-gold tracking-tight">E</span>
       </div>
     </div>
     <div className="flex flex-col leading-none">
       <span className="font-display font-bold text-[15px] tracking-tight text-foreground">
-        HBS <span className="text-gold">VIP</span>
+        HBS VIP Club
       </span>
       <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-0.5">Club</span>
     </div>

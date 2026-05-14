@@ -23,13 +23,12 @@ export const Logo = ({
           height={size}
           loading="eager"
           decoding="async"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover [image-rendering:high-quality]"
         />
       </div>
       {showWordmark && (
         <div className="leading-tight">
-          <div className="text-[10px] uppercase tracking-[0.22em] text-primary/80 font-semibold">HBS</div>
-          <div className="font-display font-bold text-base text-foreground -mt-0.5">VIP Club</div>
+          <div className="font-display font-bold text-lg text-foreground tracking-tight">HBS VIP Club</div>
         </div>
       )}
     </div>

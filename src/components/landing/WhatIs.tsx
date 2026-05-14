@@ -60,7 +60,7 @@ export const WhatIs = () => {
                     <img
                       key={i}
                       src={src}
-                      alt={`ELMAKON a'zo ${i + 1}`}
+                      alt={`HBS ACADEMY a'zo ${i + 1}`}
                       loading="lazy"
                       className="h-8 w-8 rounded-full border-2 border-card object-cover"
                     />

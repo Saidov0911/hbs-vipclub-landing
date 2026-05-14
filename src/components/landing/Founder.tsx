@@ -17,9 +17,9 @@ const BADGES: { key: string; icon: React.ElementType }[] = [
 ];
 
 const COMPANIES: { name: string; src: string }[] = [
-  { name: "HBS", src: brandElmakon },
+  { name: "HBS ACADEMY", src: brandElmakon },
   { name: "BM Electronics", src: brandBmElectronics },
-  { name: "ELMAKON", src: brandHbs },
+  { name: "HBS ACADEMY", src: brandHbs },
   { name: "Saraf", src: brandSaraf },
 ];
 
@@ -80,7 +80,7 @@ export const Founder = () => {
             {/* Eyebrow tag */}
             <div className="inline-flex items-center gap-2 rounded-full glass-strong border border-primary/30 px-3 py-1 text-[11px] font-semibold text-gold mb-4">
               <Sparkles className="h-3 w-3" />
-              ELMAKON asoschisi
+              HBS VIP Club asoschisi
             </div>
 
             <h3 className="font-display font-extrabold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.05] text-foreground">

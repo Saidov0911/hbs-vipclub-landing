@@ -139,7 +139,7 @@ const Card = ({ item, fullWidth = false }: { item: FeedbackItem; fullWidth?: boo
   >
     <img
       src={item.src}
-      alt={`HBS ACADEMY — ${item.label}`}
+      alt={`ELMAKON — ${item.label}`}
       className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
       loading="lazy"
       decoding="async"

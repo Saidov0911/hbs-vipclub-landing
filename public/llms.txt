@@ -1,0 +1,7 @@
+# HBS VIP Club
+
+> Yopiq Telegram hamjamiyat — professional treyderlar bilan kripto va aksiya bozorida birga o‘rganing. Signal va tahlillar, jonli savol-javob, mentorlardan yordam.
+
+## Pages
+
+- [Home](/): VIP Club haqida, narxlar, mentorlar, FAQ va Telegram botga qo‘shilish.

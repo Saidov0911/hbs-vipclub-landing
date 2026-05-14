@@ -209,7 +209,7 @@ export const FeedbackScreen = () => (
         >
           <img
             src={src}
-            alt={`HBS VIP Club a'zo fikri ${i + 1}`}
+            alt={`ELMAKON a'zo fikri ${i + 1}`}
             className="w-full h-auto block"
             loading="lazy"
             decoding="async"

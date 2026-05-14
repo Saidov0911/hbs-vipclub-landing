@@ -65,7 +65,101 @@ const mentors: MentorMeta[] = [
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 3 yillik tajriba" },
       { icon: Wallet, text: "ELMAKON jamoasi bilan $600 000 aylanma" },
-// ... keep existing code
+    ],
+  },
+  {
+    key: "mentor.6",
+    photo: mentorAmirxon,
+    icon: Bitcoin,
+    market: "Crypto",
+    accent: "text-amber-400",
+    stats: [
+      { icon: Briefcase, text: "Moliya bozorida — 4 yillik tajriba" },
+      { icon: TrendingUp, text: "Yillik 50%+ daromad" },
+    ],
+  },
+];
+
+export const Mentors = () => {
+  const { t } = useI18n();
+
+  return (
+    <Section id="mentors" eyebrow="Mentorlar" title={t("mentors.title")} subtitle={t("mentors.subtitle")}>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        {mentors.map((m, idx) => (
+          <MentorCard
+            key={m.key}
+            name={t(`${m.key}.name`)}
+            role={t(`${m.key}.role`)}
+            photo={m.photo}
+            icon={m.icon}
+            market={m.market}
+            accent={m.accent}
+            stats={m.stats}
+            delay={idx * 150}
+            objectPosition={m.objectPosition}
+          />
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+const MentorCard = ({
+  name,
+  role,
+  photo,
+  icon: Icon,
+  market,
+  accent,
+  stats,
+  delay,
+  objectPosition,
+}: {
+  name: string;
+  role: string;
+  photo: string;
+  icon: React.ElementType;
+  market: string;
+  accent: string;
+  stats: Stat[];
+  delay: number;
+  objectPosition?: string;
+}) => {
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={cn(
+        "group relative flex flex-col h-full rounded-2xl overflow-hidden glass hover:border-primary/50 transition-all duration-500 reveal",
+        inView && "is-visible"
+      )}
+    >
+      <div className="flex flex-col h-full">
+        {/* Photo Container */}
+        <div className="relative aspect-[4/5] overflow-hidden">
+          <img
+            src={photo}
+            alt={name}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            style={{ objectPosition }}
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+
+          {/* Market Badge */}
+          <div className="absolute top-4 right-4 flex flex-col items-end gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-foreground shadow-lg">
+              <Icon className={cn("h-3.5 w-3.5", accent)} />
+              {market}
+            </span>
+          </div>
+
+          {/* Floating Brand */}
+          <div className="absolute top-4 left-4">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-1 block">
               ELMAKON
             </span>
           </div>

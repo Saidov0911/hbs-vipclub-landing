@@ -106,8 +106,8 @@ export const Founder = () => {
                 className="pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-2xl bg-gradient-to-r from-primary/10 via-primary-glow/5 to-transparent blur-2xl"
               />
               <p
-                className="relative text-lg md:text-2xl font-display font-semibold tracking-[-0.01em] leading-[1.25] bg-gradient-to-r from-gold via-primary-glow to-gold bg-clip-text text-transparent drop-shadow-[0_0_18px_hsl(var(--primary)/0.35)]"
-                style={{ textShadow: "0 0 24px hsl(var(--primary) / 0.25)" }}
+                className="text-gold relative text-lg md:text-2xl font-display font-semibold tracking-[-0.01em] leading-[1.25]"
+                style={{ filter: "drop-shadow(0 0 18px hsl(var(--primary) / 0.35))" }}
               >
                 {t("founder.bio")}
               </p>

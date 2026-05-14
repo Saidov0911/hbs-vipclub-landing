@@ -1,4 +1,4 @@
-import { Award, Briefcase, Building2, TrendingUp, Quote, Sparkles } from "lucide-react";
+import { Award, Briefcase, Building2, TrendingUp, Quote, Sparkles, Instagram, Linkedin } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { Section } from "./Section";
 import { useInView } from "@/hooks/useInView";
@@ -12,9 +12,8 @@ import brandSaraf from "@/assets/brand-saraf.png";
 const BADGES: { key: string; icon: React.ElementType }[] = [
   { key: "founder.badge.1", icon: Building2 },
   { key: "founder.badge.2", icon: Sparkles },
-  { key: "founder.badge.3", icon: Award },
+  { key: "founder.badge.3", icon: Briefcase },
   { key: "founder.badge.4", icon: TrendingUp },
-  { key: "founder.badge.5", icon: Briefcase },
 ];
 
 const COMPANIES: { name: string; src: string }[] = [
@@ -74,15 +73,31 @@ export const Founder = () => {
 
           {/* Content column */}
           <div>
-            {/* Eyebrow tag */}
-            <div className="inline-flex items-center gap-2 rounded-full glass-strong border border-primary/30 px-3 py-1 text-[11px] font-semibold text-gold mb-4">
-              <Sparkles className="h-3 w-3" />
-              HBS asoschisi
-            </div>
-
             <h3 className="font-display font-extrabold text-3xl md:text-5xl tracking-[-0.02em] leading-[1.05] text-foreground">
               {t("founder.name")}
             </h3>
+
+            {/* Social links */}
+            <div className="mt-4 flex items-center gap-2">
+              <a
+                href="https://www.instagram.com/muslihiddin.hayitbaev?igsh=MTY2NmFmb2EydXd0aA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:text-gold hover:border-primary/60 transition-colors"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muslihiddin-hayitbaev-470725171/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-strong border border-primary/30 text-foreground hover:text-gold hover:border-primary/60 transition-colors"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
 
             {/* Bio with quote accent */}
             <div className="relative mt-5 pl-5">

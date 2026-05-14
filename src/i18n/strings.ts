@@ -172,13 +172,11 @@ const uz: Dict = {
   // Founder
   "founder.title": "HBS asoschisi",
   "founder.name": "Mushlihiddin Hayitbaev",
-  "founder.bio":
-    "Tadbirkor, treyder va jamoa rahbari. HBS jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
-  "founder.badge.1": "“HBS” kompaniyasi asoschisi",
-  "founder.badge.2": "“Elmakon” marketpleysi asoschilaridan biri",
-  "founder.badge.3": "“Elmakon”ning aksionerlaridan biri",
+  "founder.bio": "Xalqaro investitsion fond rahbari",
+  "founder.badge.1": "“HBS Technologies” kompaniyasi asoschisi",
+  "founder.badge.2": "“Elmakon” marketpleysining asoschilaridan va aksionerlaridan biri",
+  "founder.badge.3": "“BM Electronics” sobiq direktori",
   "founder.badge.4": "Treyding orqali HBS jamoasi yillik 55% daromad qildi",
-  "founder.badge.5": "“BM Electronics” sobiq direktori",
 
   // FAQ
   "faq.title": "Tez-tez so‘raladigan savollar",

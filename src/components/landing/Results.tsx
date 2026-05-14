@@ -107,7 +107,7 @@ const MarqueeRow = ({
     <div className="group/row overflow-hidden">
       <div
         className={cn(
-          "flex w-max items-stretch gap-4 md:gap-5",
+          "flex w-max items-start gap-4 md:gap-5",
           direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
           "group-hover/row:[animation-play-state:paused]"
         )}

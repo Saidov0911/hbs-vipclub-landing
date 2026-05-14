@@ -80,10 +80,10 @@ const PriceCard = ({
     <div
       ref={ref}
       className={cn(
-        "relative rounded-2xl p-7 md:p-8 reveal transition-all duration-500",
+        "relative rounded-2xl p-7 md:p-8 reveal transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-gold cursor-pointer group",
         highlight
-          ? "bg-gradient-card border border-primary/50 shadow-gold"
-          : "glass hover:border-primary/30",
+          ? "bg-gradient-card border border-primary/50 shadow-gold hover:border-primary"
+          : "glass hover:border-primary/50",
         inView && "is-visible"
       )}
     >

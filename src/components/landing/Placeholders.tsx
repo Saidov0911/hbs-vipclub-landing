@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** HBS VIP Club gold mark — used as a placeholder logo. Swap to <img src="/logo.svg" /> later. */
+/** ELMAKON gold mark — used as a placeholder logo. Swap to <img src="/logo.svg" /> later. */
 export const PlaceholderLogo = ({ className }: { className?: string }) => (
   <div className={cn("flex items-center gap-2.5", className)}>
     <div className="relative h-9 w-9 shrink-0">
@@ -11,7 +11,7 @@ export const PlaceholderLogo = ({ className }: { className?: string }) => (
     </div>
     <div className="flex flex-col leading-none">
       <span className="font-display font-bold text-[15px] tracking-tight text-foreground">
-        HBS VIP Club
+        ELMAKON
       </span>
       <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-0.5">Club</span>
     </div>

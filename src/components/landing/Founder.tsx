@@ -51,11 +51,7 @@ export const Founder = () => {
         <div className="relative grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center p-8 md:p-14">
           {/* Photo column */}
           <div className="relative mx-auto md:mx-0">
-            {/* Rotating gradient ring */}
-            <div className="absolute -inset-3 rounded-full bg-[conic-gradient(from_0deg,hsl(var(--primary)),hsl(var(--primary-glow)),hsl(var(--primary)))] opacity-40 blur-md animate-glow-pulse" />
-            <div className="absolute -inset-1 rounded-full bg-gradient-gold opacity-60 blur-xl" />
-
-            <div className="relative h-[220px] w-[220px] md:h-[260px] md:w-[260px] rounded-full overflow-hidden ring-2 ring-primary/50 ring-offset-4 ring-offset-background bg-gradient-to-b from-secondary/60 to-background shadow-gold">
+            <div className="relative h-[220px] w-[220px] md:h-[260px] md:w-[260px] rounded-full overflow-hidden ring-2 ring-primary/50 ring-offset-4 ring-offset-background bg-gradient-to-b from-secondary/60 to-background">
               <img
                 src={founderPhoto}
                 alt={t("founder.name")}

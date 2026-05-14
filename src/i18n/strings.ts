@@ -166,7 +166,7 @@ const uz: Dict = {
   "founder.title": "ELMAKON asoschisi",
   "founder.name": "Mushlihiddin Hayitbaev",
   "founder.bio":
-    "Tadbirkor, treyder va jamoa rahbari. HBS jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
+    "Tadbirkor, treyder va jamoa rahbari. ELMAKON jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",
   "founder.badge.1": "ELMAKON kompaniyasi asoschisi",
   "founder.badge.2": "Elmakon marketplace asoschilaridan biri",
   "founder.badge.3": "Trading orqali ELMAKON jamoasi yillik 60% daromad qildi",

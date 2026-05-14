@@ -75,7 +75,6 @@ const PriceCard = ({
   highlight?: boolean;
   badge?: string;
 }) => {
-  const { t } = useI18n();
   const { ref, inView } = useInView<HTMLDivElement>();
   return (
     <div
@@ -118,7 +117,7 @@ const PriceCard = ({
         <span className="text-muted-foreground text-sm">{unit}</span>
       </div>
       <div className="h-px bg-border/70 mb-5" />
-      <ul className="space-y-3 mb-6">
+      <ul className="space-y-3">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-3 text-sm text-foreground/90">
             <span
@@ -133,17 +132,6 @@ const PriceCard = ({
           </li>
         ))}
       </ul>
-      <a
-        href={BOT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn(
-          "block text-center px-5 py-3 rounded-xl text-sm font-semibold w-full",
-          highlight ? "btn-gold" : "btn-ghost-gold"
-        )}
-      >
-        {t("price.cta")}
-      </a>
     </div>
   );
 };

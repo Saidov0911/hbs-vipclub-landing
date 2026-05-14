@@ -75,7 +75,6 @@ const PriceCard = ({
   highlight?: boolean;
   badge?: string;
 }) => {
-  const { t } = useI18n();
   const { ref, inView } = useInView<HTMLDivElement>();
   return (
     <div

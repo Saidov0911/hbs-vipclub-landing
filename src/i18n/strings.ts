@@ -170,7 +170,7 @@ const uz: Dict = {
   "values.4.desc": "Hech qanday yashirin to‘lov yoki aldov yo‘q — natijalar, signallar va fikrlar ochiq ko‘rsatiladi.",
 
   // Founder
-  "founder.title": "ELMAKON asoschisi",
+  "founder.title": "\n",
   "founder.name": "Mushlihiddin Hayitbaev",
   "founder.bio":
     "Tadbirkor, treyder va jamoa rahbari. ELMAKON jamoasini boshqaradi va yangi avlod treyderlarini tarbiyalaydi.",

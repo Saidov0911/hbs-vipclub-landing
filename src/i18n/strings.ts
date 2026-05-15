@@ -17,9 +17,9 @@ const uz: Dict = {
   "nav.cta": "VIP Clubga qo‘shilish",
 
   // Hero
-  "hero.badge": "Yopiq Telegram hamjamiyat",
+  "hero.badge": "O'zbekistondagi Top 1",
   "hero.title.1": "HBS VIP Club\n",
-  "hero.title.2": "UZBEKISTONDAGI N.1 TREYDERLAR KLUBI",
+  "hero.title.2": "Oʻzbekistondagi yopiq treyderlar hamjamiyati",
   "hero.subtitle":
     "Professional treyderlar bilan birga o‘rganing, signal va tahlillardan foydalaning, kripto va aksiya bozorida tajribali hamjamiyat ichida rivojlaning.",
   "hero.cta.primary": "VIP Clubga qo‘shilish",

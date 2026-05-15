@@ -68,7 +68,7 @@ export const Hero = () => {
 
           {/* Headline */}
           <h1 className="font-display font-extrabold text-[44px] sm:text-6xl md:text-7xl lg:text-[88px] leading-[1.02] tracking-[-0.03em]">
-            <span className="block text-foreground">{t("hero.title.1")}</span>
+            <span className="block text-gold">{t("hero.title.1")}</span>
             <span className="relative inline-block mt-1 md:mt-2">
               <span className="relative z-10 text-gold">{t("hero.title.2")}</span>
               <span

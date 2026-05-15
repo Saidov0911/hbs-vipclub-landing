@@ -13,6 +13,7 @@ import { Founder } from "@/components/landing/Founder";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
+import { SupportFab } from "@/components/landing/SupportFab";
 
 const Index = () => {
   return (
@@ -34,6 +35,7 @@ const Index = () => {
           <FinalCTA />
         </main>
         <Footer />
+        <SupportFab />
       </div>
     </I18nProvider>
   );

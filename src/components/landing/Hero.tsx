@@ -67,10 +67,10 @@ export const Hero = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display font-extrabold text-[44px] sm:text-6xl md:text-7xl lg:text-[88px] leading-[1.02] tracking-[-0.03em]">
-            <span className="block text-foreground">{t("hero.title.1")}</span>
+          <h1 className="font-sans text-8xl leading-[1.02] tracking-[-0.03em]">
+            <span className="block text-white font-bold">{t("hero.title.1")}</span>
             <span className="relative inline-block mt-1 md:mt-2">
-              <span className="relative z-10 text-gold">{t("hero.title.2")}</span>
+              <span className="relative z-10 font-medium" style={{ color: "#F0D291" }}>{t("hero.title.2")}</span>
               <span
                 aria-hidden
                 className="absolute left-0 right-0 -bottom-1 md:-bottom-2 h-[10px] md:h-[14px] bg-gradient-gold rounded-full opacity-25 blur-md"
@@ -177,7 +177,7 @@ const HeroGallery = () => {
               <div key={i} className="relative h-full w-full shrink-0 flex items-center justify-center p-2 md:p-4">
                 <img
                   src={src}
-                  alt={`HBS VIP Club Telegram ${(i % GALLERY.length) + 1}`}
+                  alt={`HBS VIP CLUB Telegram ${(i % GALLERY.length) + 1}`}
                   className="h-full w-auto max-w-full object-contain block"
                   loading={i < 2 ? "eager" : "lazy"}
                   decoding="async"

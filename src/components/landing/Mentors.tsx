@@ -64,7 +64,7 @@ const mentors: MentorMeta[] = [
     accent: "text-amber-400",
     stats: [
       { icon: Briefcase, text: "Moliya bozorida — 3 yillik tajriba" },
-      { icon: Wallet, text: "HBS VIP Club jamoasi bilan $600 000 aylanma" },
+      { icon: Wallet, text: "HBS VIP CLUB jamoasi bilan $600 000 aylanma" },
     ],
   },
   {
@@ -160,7 +160,7 @@ const MentorCard = ({
           {/* Floating Brand */}
           <div className="absolute top-4 left-4">
             <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-1 block">
-              HBS VIP Club
+              HBS VIP CLUB
             </span>
           </div>
         </div>

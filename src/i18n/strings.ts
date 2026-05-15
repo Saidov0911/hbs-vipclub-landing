@@ -1,6 +1,6 @@
 export type Lang = "uz" | "ru";
 
-export const BOT_URL = "https://bit.ly/4dbUgPy";
+export const BOT_URL = "https://bit.ly/4tCg5N4";
 export const SUPPORT_URL = "https://t.me/hbs_support";
 
 // Uzbek is the source. Russian mirrors UZ as a placeholder so the toggle works

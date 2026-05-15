@@ -68,9 +68,9 @@ export const Hero = () => {
 
           {/* Headline */}
           <h1 className="font-sans text-8xl leading-[1.02] tracking-[-0.03em]">
-            <span className="block text-white">{t("hero.title.1")}</span>
+            <span className="block text-white font-bold">{t("hero.title.1")}</span>
             <span className="relative inline-block mt-1 md:mt-2">
-              <span className="relative z-10" style={{ color: "#F0D291" }}>{t("hero.title.2")}</span>
+              <span className="relative z-10 font-medium" style={{ color: "#F0D291" }}>{t("hero.title.2")}</span>
               <span
                 aria-hidden
                 className="absolute left-0 right-0 -bottom-1 md:-bottom-2 h-[10px] md:h-[14px] bg-gradient-gold rounded-full opacity-25 blur-md"

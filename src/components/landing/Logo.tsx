@@ -18,7 +18,7 @@ export const Logo = ({
       >
         <img
           src={logoSrc}
-          alt="HBS VIP Club"
+          alt="HBS VIP CLUB"
           width={size}
           height={size}
           loading="eager"
@@ -28,7 +28,7 @@ export const Logo = ({
       </div>
       {showWordmark && (
         <div className="leading-tight">
-          <div className="font-display font-bold text-lg text-foreground tracking-tight">HBS VIP Club</div>
+          <div className="font-display font-bold text-lg text-foreground tracking-tight">HBS VIP CLUB</div>
         </div>
       )}
     </div>

@@ -51,7 +51,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className="mt-10 pt-6 border-t border-border/60 text-xs text-muted-foreground flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} HBS VIP Club. {t("footer.rights")}</span>
+          <span>© {new Date().getFullYear()} HBS VIP CLUB. {t("footer.rights")}</span>
           <span className="text-gold/80">Premium Trading Community</span>
         </div>
       </div>

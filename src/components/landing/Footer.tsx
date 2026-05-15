@@ -1,4 +1,4 @@
-import { Send } from "lucide-react";
+import { Phone, Send } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { BOT_URL, SUPPORT_URL } from "@/i18n/strings";
 import { Logo } from "./Logo";
@@ -38,6 +38,14 @@ export const Footer = () => {
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold"
               >
                 {t("footer.support")}
+              </a>
+            </div>
+            <div>
+              <a
+                href="tel:+998951907007"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold"
+              >
+                <Phone className="h-4 w-4" /> +998 95 190 70 07
               </a>
             </div>
           </div>
